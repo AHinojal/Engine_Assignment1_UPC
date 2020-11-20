@@ -1,2 +1,0 @@
-C:\Users\Carlos\Desktop\Engine\Debug\EngineMaster.exe
-C:\Users\Carlos\Desktop\Engine\Debug\EngineMaster.pdb
