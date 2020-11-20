@@ -74,14 +74,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>./SDL/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./glew-2.1.0/include;./SDL/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./glew-2.1.0/lib/Release/Win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -139,20 +138,149 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\Random\LCG.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\SAT.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\emscripten\library_system.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Capsule.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Frustum.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\GeometryAll.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\GeomType.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\HitInfo.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\KDTree.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Line.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\PBVolume.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Plane.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon2DRef.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polyhedron.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\QuadTree.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Ray.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Sphere.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle2D.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathBuildConfig.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathGeoLib.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathGeoLibFwd.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\assume.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitFuncs.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitOps.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Callstack.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\FixedPoint.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x3.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x4.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4_neon.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4_sse.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4_neon.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4_sse.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\FloatCmp.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\InclWindows.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Interpolate.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathAll.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathConstants.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathFunc.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathLog.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathNamespace.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathTypes.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MatrixProxy.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MiniFloat.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MultiLineMacro.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\myassert.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Polynomial.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Quat.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\quat_simd.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Rect.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Reinterpret.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\simd.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\SSEMath.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\sse_mathfun.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Swap.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\vec2d.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Module.h" />
+    <ClInclude Include="ModuleCamera.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK2D.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\Random\LCG.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\SAT.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Capsule.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle2D.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Frustum.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Line.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment2D.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\PBVolume.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Plane.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polyhedron.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Ray.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Sphere.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle2D.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitOps.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Callstack.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x3.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x4.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.c" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3_cpp.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathFunc.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathLog.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathOps.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MiniFloat.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Polynomial.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Quat.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\SSEMath.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModuleCamera.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\KDTree.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\QuadTree.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_AVX.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_CPP.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.inl" />
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Matrix.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

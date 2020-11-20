@@ -17,5 +17,7 @@ enum update_status
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 #define FULLSCREEN false
+#define WINDOW_RESIZABLE true
 #define VSYNC true
-#define TITLE "Super Awesome Engine"
+#define TITLE "Super Delay Engine"
+#define DEGTORAD(angleDegrees) ((angleDegrees) * M_PI / 180.0)

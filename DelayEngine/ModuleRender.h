@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "SDL/include/SDL.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -20,5 +21,6 @@ public:
 	void WindowResized(unsigned width, unsigned height);
 
 private:
-	void* context;
+	// Change type for OpenGL Initialization
+	SDL_GLContext context;
 };

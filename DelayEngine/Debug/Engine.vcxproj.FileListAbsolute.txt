@@ -1,2 +1,4 @@
 C:\Users\Carlos\Desktop\Engine\Debug\EngineMaster.exe
 C:\Users\Carlos\Desktop\Engine\Debug\EngineMaster.pdb
+C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\Debug\EngineMaster.exe
+C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\Debug\EngineMaster.pdb

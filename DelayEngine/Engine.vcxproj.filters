@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleRender.cpp" />
+    <ClCompile Include="ModuleWindow.cpp" />
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK2D.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\Random\LCG.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\SAT.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Capsule.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle2D.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Frustum.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Line.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment2D.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\PBVolume.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Plane.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polyhedron.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Ray.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Sphere.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle2D.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitOps.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Callstack.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x3.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x4.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.c">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3_cpp.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathFunc.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathLog.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathOps.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MiniFloat.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Polynomial.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Quat.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\SSEMath.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.cpp">
+      <Filter>MathGeoLab</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleRender.h" />
+    <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\Random\LCG.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\SAT.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\emscripten\library_system.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Capsule.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Circle2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Frustum.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\GeometryAll.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\GeomType.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\HitInfo.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\KDTree.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Line.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\LineSegment2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\OBB2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\PBVolume.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Plane.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polygon2DRef.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Polyhedron.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\QuadTree.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Ray.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Sphere.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle2D.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\assume.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitFuncs.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\BitOps.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Callstack.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\FixedPoint.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x3.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float3x4.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4_neon.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4x4_sse.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4_neon.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4_sse.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\FloatCmp.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\InclWindows.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Interpolate.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathAll.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathConstants.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathFunc.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathLog.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathNamespace.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MathTypes.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MatrixProxy.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MiniFloat.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\MultiLineMacro.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\myassert.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Polynomial.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Quat.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\quat_simd.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Rect.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Reinterpret.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\simd.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\SSEMath.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\sse_mathfun.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Swap.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\vec2d.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathBuildConfig.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathGeoLib.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathGeoLibFwd.h">
+      <Filter>MathGeoLab</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MathGeoLab">
+      <UniqueIdentifier>{1d3e94e3-28d0-4a7d-8f17-20a2825608e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\KDTree.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\QuadTree.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_AVX.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_CPP.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Matrix.inl">
+      <Filter>MathGeoLab</Filter>
+    </None>
+  </ItemGroup>
+</Project>

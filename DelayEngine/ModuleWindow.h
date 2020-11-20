@@ -24,9 +24,11 @@ public:
 public:
 	//The window we'll be rendering to
 	SDL_Window* window = NULL;
-
 	//The surface contained by the window
 	SDL_Surface* screen_surface = NULL;
+	// Element of the size of the window
+	int width;
+	int height;
 };
 
 #endif // __ModuleWindow_H__
