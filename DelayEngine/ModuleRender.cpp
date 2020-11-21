@@ -59,13 +59,13 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	// Testing: Draw geometry
+	/* Testing: Draw geometry
 	glBegin(GL_TRIANGLES);
 		glColor3f(1.0, 0.0, 0.0);
 		glVertex2f(0, 1); //vertice 1
 		glVertex2f(-1, -1); //vertice 2
 		glVertex2f(1, -1); //vertice 3
-	glEnd();
+	glEnd();*/
 
 	return UPDATE_CONTINUE;
 }
