@@ -1,2 +1,25 @@
-﻿  ModuleRender.cpp
+﻿  Triangle.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h(197,3): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h(198,10): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h(203,3): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float4d.h(204,10): warning C4244: 'argument': conversion from 'const double' to 'float', possible loss of data
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle.cpp(1956,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Triangle2D.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\AABB2D.h(135,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\Triangle2D.cpp(1699,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  TransformOps.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.cpp(77,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.cpp(293,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Application.cpp
+  log.cpp
+  ModuleCamera.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.cpp(33,59): warning C4305: 'argument': truncation from 'double' to 'float'
+  ModuleInput.cpp
+  ModuleRender.cpp
+  ModuleWindow.cpp
+  Generating Code...
+  grisu3.c
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.c(323,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.c(348,10): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\alvar\OneDrive\Escritorio\Master\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\grisu3.c(365,10): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Engine.vcxproj -> C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\Debug\EngineMaster.exe

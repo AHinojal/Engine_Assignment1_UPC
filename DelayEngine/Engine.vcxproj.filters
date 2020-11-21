@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.cpp">
       <Filter>MathGeoLab</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -369,10 +370,17 @@
     <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\MathGeoLibFwd.h">
       <Filter>MathGeoLab</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCamera.h" />
+    <ClInclude Include="Utils\Point.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MathGeoLab">
       <UniqueIdentifier>{1d3e94e3-28d0-4a7d-8f17-20a2825608e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{ee9f7781-64c7-43af-acae-aaf4542dd715}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

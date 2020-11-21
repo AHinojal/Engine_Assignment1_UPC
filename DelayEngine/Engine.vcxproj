@@ -221,6 +221,7 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="Utils\Point.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Algorithm\GJK.cpp" />
