@@ -107,6 +107,7 @@ update_status ModuleCamera::Update()
 	}
 	rotatePitch();
 	rotateYaw();
+	rotateRoll();
 	return UPDATE_CONTINUE;
 }
 
@@ -205,7 +206,7 @@ void ModuleCamera::rotatePitch()
 
 void ModuleCamera::rotateYaw()
 {
-	if (App->input->GetKey(SDL_SCANCODE_LEFT)) { // FORWARD
+	if (App->input->GetKey(SDL_SCANCODE_LEFT)) { // LOOK LEFT
 		float3 col1 = float3(cos(actualSpeed), 0, sin(actualSpeed));
 		float3 col2 = float3(0, 1, 0);
 		float3 col3 = float3(-sin(actualSpeed), 0, cos(actualSpeed));
@@ -215,10 +216,34 @@ void ModuleCamera::rotateYaw()
 		rotationMatrix.SetCol(2, col3);
 		doRotation(rotationMatrix);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT)) { // BACKWARD
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT)) { // LOOK RIGHT
 		float3 col1 = float3(cos(-actualSpeed), 0, sin(-actualSpeed));
 		float3 col2 = float3(0, 1, 0);
 		float3 col3 = float3(-sin(-actualSpeed), 0, cos(-actualSpeed));
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+	}
+}
+
+void ModuleCamera::rotateRoll()
+{
+	if (App->input->GetKey(SDL_SCANCODE_Z)) { // TURN LEFT
+		float3 col1 = float3(cos(actualSpeed), -sin(actualSpeed), 0);
+		float3 col2 = float3(sin(actualSpeed), cos(actualSpeed), 0);
+		float3 col3 = float3(0, 0, 1);
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_C)) { // TURN RIGHT
+		float3 col1 = float3(cos(-actualSpeed), -sin(-actualSpeed), 0);
+		float3 col2 = float3(sin(-actualSpeed), cos(-actualSpeed), 0);
+		float3 col3 = float3(0, 0, 1);
 		float3x3 rotationMatrix;
 		rotationMatrix.SetCol(0, col1);
 		rotationMatrix.SetCol(1, col2);

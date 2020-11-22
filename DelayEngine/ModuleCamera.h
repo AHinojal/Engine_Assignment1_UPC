@@ -31,6 +31,7 @@ public:
 	void moveLeftAndRight();
 	void rotatePitch();
 	void rotateYaw();
+	void rotateRoll();
 	void doRotation(float3x3& rotationMatrix);
 
 private:
