@@ -4,6 +4,7 @@
 #include "SDL/include/SDL.h"
 #include "MathGeoLib/Geometry/Frustum.h"
 #include "MathGeoLib/Math/float4x4.h"
+#include "MathGeoLib/Math/float3.h"
 
 class ModuleCamera : public Module
 {
@@ -23,11 +24,13 @@ public:
 	void setPlaneDistance();*/
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
-	void GoUpAndDown();
+	void goUpAndDown();
 
 
 private:
 	Frustum frustum;
+	float3 position;
+	float speed;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
 };

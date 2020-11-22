@@ -11,7 +11,8 @@
 
 ModuleCamera::ModuleCamera()
 {
-	
+	position = float3(0, 1, -2);
+	speed = 0.25;
 }
 
 // Destructor
@@ -32,30 +33,15 @@ update_status ModuleCamera::PreUpdate()
 	frustum.SetViewPlaneDistances(0.1f, 200.0f);
 	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(90), 1.3f);
 
-	frustum.SetPos(float3(0, 1, -2));
+	// Move position camera
+	frustum.SetPos(position);
 	// Move camera forward and backward
 	frustum.SetFront(float3::unitZ);
 	// Rotation camera
 	frustum.SetUp(float3::unitY);
 
 	projectionMatrix = frustum.ProjectionMatrix().Transposed(); //<-- Important to transpose!
-
-	//Send the frustum projection matrix to OpenGL
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(*(projectionMatrix).v);
-
 	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!
-
-	//Send the frustum view matrix to OpenGL
-	//float3x3 rotationMatrix = frustum.WorldMatrix().RotatePart().RotateY(90);
-	/*float3x3 rotationMatrix;
-	vec oldFront = frustum.Front().Normalized();
-	frustum.SetFront(rotationMatrix.MulDir(oldFront));
-	vec oldUp = frustum.Up().Normalized();
-	frustum.SetUp(rotationMatrix.MulDir(oldUp));*/
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(*(viewMatrix.Transposed()).v);
 
 	return UPDATE_CONTINUE;
 }
@@ -63,6 +49,14 @@ update_status ModuleCamera::PreUpdate()
 // Called every draw update
 update_status ModuleCamera::Update()
 {
+	//Send the frustum projection matrix to OpenGL
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(*(projectionMatrix).v);
+
+	//Send the frustum view matrix to OpenGL
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf(*(viewMatrix.Transposed()).v);
+
 	// FPS CAMERA CLASS
 	// Grid Engine
 	glLineWidth(1.0f);
@@ -104,6 +98,9 @@ update_status ModuleCamera::Update()
 	// Color Grid
 	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
 
+	// CallMethods
+	goUpAndDown();
+
 	return UPDATE_CONTINUE;
 }
 
@@ -122,10 +119,22 @@ bool ModuleCamera::CleanUp()
 	return true;
 }
 
-void ModuleCamera::GoUpAndDown()
+void ModuleCamera::goUpAndDown()
 {
 	if (App->input->GetKey(SDL_SCANCODE_Q)) {
-
+		position.y += speed;
+		frustum.SetPos(position);
 	}
+	if (App->input->GetKey(SDL_SCANCODE_E)) {
+		position.y -= speed;
+		frustum.SetPos(position);
+	}
+
 }
 
+
+/*float3x3 rotationMatrix;
+vec oldFront = frustum.Front().Normalized();
+frustum.SetFront(rotationMatrix.MulDir(oldFront));
+vec oldUp = frustum.Up().Normalized();
+frustum.SetUp(rotationMatrix.MulDir(oldUp));*/
