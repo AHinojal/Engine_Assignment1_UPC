@@ -55,46 +55,10 @@ update_status ModuleCamera::Update()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(*(viewMatrix.Transposed()).v);
 
-	// FPS CAMERA CLASS
-	// Grid Engine
-	glLineWidth(1.0f);
-	float d = 200.0f;
-	glBegin(GL_LINES);
-	for (float i = -d; i <= d; i += 1.0f)
-	{
-		glVertex3f(i, 0.0f, -d);
-		glVertex3f(i, 0.0f, d);
-		glVertex3f(-d, 0.0f, i);
-		glVertex3f(d, 0.0f, i);
-	}
-	glEnd();
+	printAxis();
 
-	// Coordenate Axis
-	glLineWidth(2.0f);
-	glBegin(GL_LINES);
-
-	// red X
-	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(1.0f, 0.1f, 0.0f); glVertex3f(1.1f, -0.1f, 0.0f);
-	glVertex3f(1.1f, 0.1f, 0.0f); glVertex3f(1.0f, -0.1f, 0.0f);
-	// green Y
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
-	glVertex3f(0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
-	glVertex3f(0.0f, 1.15f, 0.0f); glVertex3f(0.0f, 1.05f, 0.0f);
-	// blue Z
-	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-0.05f, 0.1f, 1.05f); glVertex3f(0.05f, 0.1f, 1.05f);
-	glVertex3f(0.05f, 0.1f, 1.05f); glVertex3f(-0.05f, -0.1f, 1.05f);
-	glVertex3f(-0.05f, -0.1f, 1.05f); glVertex3f(0.05f, -0.1f, 1.05f);
-	glEnd();
-	glLineWidth(1.0f);
-
-	// Color Grid
-	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
+	deltaTime = clock() - oldTime;
+	oldTime = clock();
 
 	// Callbacks
 	increaseCameraSpeed();
@@ -108,6 +72,8 @@ update_status ModuleCamera::Update()
 	rotatePitch();
 	rotateYaw();
 	rotateRoll();
+	rotatePitchAndYawWithMouse();
+
 	return UPDATE_CONTINUE;
 }
 
@@ -252,12 +218,81 @@ void ModuleCamera::rotateRoll()
 	}
 }
 
+void ModuleCamera::rotatePitchAndYawWithMouse()
+{
+	iPoint point = App->input->GetMouseMotion();
+	float3x3 rotationMatrix;
+	actualSpeed = 0.001;
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT)) {
+		// PITCH
+		float3 col1 = float3(1, 0, 0);
+		float3 col2 = float3(0, cos(point.y * actualSpeed * deltaTime), -sin(point.y * actualSpeed * deltaTime));
+		float3 col3 = float3(0, sin(point.y * actualSpeed * deltaTime), cos(point.y * actualSpeed * deltaTime));
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+		// YAW
+		float3 col4 = float3(cos(point.x * actualSpeed * deltaTime), 0, sin(point.x * actualSpeed * deltaTime));
+		float3 col5 = float3(0, 1, 0);
+		float3 col6 = float3(-sin(point.x * actualSpeed * deltaTime), 0, cos(point.x * actualSpeed * deltaTime));
+		rotationMatrix.SetCol(0, col4);
+		rotationMatrix.SetCol(1, col5);
+		rotationMatrix.SetCol(2, col6);
+		doRotation(rotationMatrix);
+	}
+}
+
 void ModuleCamera::doRotation(float3x3& rotationMatrix)
 {
 	vec oldFront = frustum.Front().Normalized();
 	frustum.SetFront(rotationMatrix.MulDir(oldFront));
 	vec oldUp = frustum.Up().Normalized();
 	frustum.SetUp(rotationMatrix.MulDir(oldUp));
+}
+
+void ModuleCamera::printAxis()
+{
+	// FPS CAMERA CLASS
+	// Grid Engine
+	glLineWidth(1.0f);
+	float d = 200.0f;
+	glBegin(GL_LINES);
+	for (float i = -d; i <= d; i += 1.0f)
+	{
+		glVertex3f(i, 0.0f, -d);
+		glVertex3f(i, 0.0f, d);
+		glVertex3f(-d, 0.0f, i);
+		glVertex3f(d, 0.0f, i);
+	}
+	glEnd();
+
+	// Coordenate Axis
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+
+	// red X
+	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(1.0f, 0.1f, 0.0f); glVertex3f(1.1f, -0.1f, 0.0f);
+	glVertex3f(1.1f, 0.1f, 0.0f); glVertex3f(1.0f, -0.1f, 0.0f);
+	// green Y
+	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(-0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
+	glVertex3f(0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
+	glVertex3f(0.0f, 1.15f, 0.0f); glVertex3f(0.0f, 1.05f, 0.0f);
+	// blue Z
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(-0.05f, 0.1f, 1.05f); glVertex3f(0.05f, 0.1f, 1.05f);
+	glVertex3f(0.05f, 0.1f, 1.05f); glVertex3f(-0.05f, -0.1f, 1.05f);
+	glVertex3f(-0.05f, -0.1f, 1.05f); glVertex3f(0.05f, -0.1f, 1.05f);
+	glEnd();
+	glLineWidth(1.0f);
+
+	// Color Grid
+	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
 }
 
 

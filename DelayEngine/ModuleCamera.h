@@ -32,6 +32,7 @@ public:
 	void rotatePitch();
 	void rotateYaw();
 	void rotateRoll();
+	void rotatePitchAndYawWithMouse();
 	void doRotation(float3x3& rotationMatrix);
 
 private:
@@ -39,9 +40,10 @@ private:
 	float3 position;
 	float standardSpeed = 0.05;
 	float actualSpeed;
-	float deltaTime = 0.01;
+	float deltaTime;
+	float oldTime;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
 
-	
+	void printAxis();
 };
