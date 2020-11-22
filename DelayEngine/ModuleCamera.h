@@ -25,6 +25,7 @@ public:
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
 	void goUpAndDown();
+	void moveForwardAndBackward();
 
 
 private:

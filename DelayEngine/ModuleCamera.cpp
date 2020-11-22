@@ -100,6 +100,7 @@ update_status ModuleCamera::Update()
 
 	// CallMethods
 	goUpAndDown();
+	moveForwardAndBackward();
 
 	return UPDATE_CONTINUE;
 }
@@ -129,7 +130,22 @@ void ModuleCamera::goUpAndDown()
 		position.y -= speed;
 		frustum.SetPos(position);
 	}
+}
 
+void ModuleCamera::moveForwardAndBackward()
+{
+	if (App->input->GetKey(SDL_SCANCODE_W)) {
+		// Translate actual position * (vectorFront (0,0,1) * speed)
+		frustum.Translate(frustum.Front() * speed);
+		// Update new position with the translation
+		position = frustum.Pos();
+		frustum.SetPos(position);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_S)) {
+		frustum.Translate(frustum.Front() * -speed);
+		position = frustum.Pos();
+		frustum.SetPos(position);
+	}
 }
 
 
