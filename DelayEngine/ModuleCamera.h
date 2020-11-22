@@ -24,6 +24,7 @@ public:
 	void setPlaneDistance();*/
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
+	void increaseCameraSpeed();
 	void goUpAndDown();
 	void moveForwardAndBackward();
 	void moveLeftAndRight();
@@ -32,7 +33,8 @@ public:
 private:
 	Frustum frustum;
 	float3 position;
-	float speed;
+	float standardSpeed = 0.02;
+	float actualSpeed;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
 };

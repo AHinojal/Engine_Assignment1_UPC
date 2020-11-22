@@ -12,7 +12,7 @@
 ModuleCamera::ModuleCamera()
 {
 	position = float3(0, 1, -2);
-	speed = 0.25;
+	actualSpeed = standardSpeed;
 }
 
 // Destructor
@@ -99,6 +99,7 @@ update_status ModuleCamera::Update()
 	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
 
 	// CallMethods
+	increaseCameraSpeed();
 	goUpAndDown();
 	moveForwardAndBackward();
 	moveLeftAndRight();
@@ -121,14 +122,23 @@ bool ModuleCamera::CleanUp()
 	return true;
 }
 
+void ModuleCamera::increaseCameraSpeed()
+{
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT)) {
+		actualSpeed = standardSpeed * 3;
+	} else {
+		actualSpeed = standardSpeed;
+	}
+}
+
 void ModuleCamera::goUpAndDown()
 {
 	if (App->input->GetKey(SDL_SCANCODE_Q)) { // UP
-		position.y += speed;
+		position.y += actualSpeed;
 		frustum.SetPos(position);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_E)) { // DOWN
-		position.y -= speed;
+		position.y -= actualSpeed;
 		frustum.SetPos(position);
 	}
 }
@@ -137,13 +147,13 @@ void ModuleCamera::moveForwardAndBackward()
 {
 	if (App->input->GetKey(SDL_SCANCODE_W)) { // FORWARD
 		// Translate actual position * (vectorFront (0,0,1) * speed)
-		frustum.Translate(frustum.Front() * speed);
+		frustum.Translate(frustum.Front() * actualSpeed);
 		// Update new position with the translation
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_S)) { // BACKWARD
-		frustum.Translate(frustum.Front() * -speed);
+		frustum.Translate(frustum.Front() * -actualSpeed);
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}
@@ -153,13 +163,13 @@ void ModuleCamera::moveLeftAndRight()
 {
 	if (App->input->GetKey(SDL_SCANCODE_A)) { // LEFT
 		// Translate actual position * (vectorFront (0,0,1) * speed)
-		frustum.Translate(frustum.WorldRight() * -speed);
+		frustum.Translate(frustum.WorldRight() * -actualSpeed);
 		// Update new position with the translation
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_D)) { // RIGHT
-		frustum.Translate(frustum.WorldRight() * speed);
+		frustum.Translate(frustum.WorldRight() * actualSpeed);
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}
