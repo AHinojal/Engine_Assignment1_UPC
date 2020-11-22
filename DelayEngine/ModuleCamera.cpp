@@ -101,6 +101,7 @@ update_status ModuleCamera::Update()
 	// CallMethods
 	goUpAndDown();
 	moveForwardAndBackward();
+	moveLeftAndRight();
 
 	return UPDATE_CONTINUE;
 }
@@ -122,11 +123,11 @@ bool ModuleCamera::CleanUp()
 
 void ModuleCamera::goUpAndDown()
 {
-	if (App->input->GetKey(SDL_SCANCODE_Q)) {
+	if (App->input->GetKey(SDL_SCANCODE_Q)) { // UP
 		position.y += speed;
 		frustum.SetPos(position);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_E)) {
+	if (App->input->GetKey(SDL_SCANCODE_E)) { // DOWN
 		position.y -= speed;
 		frustum.SetPos(position);
 	}
@@ -134,15 +135,31 @@ void ModuleCamera::goUpAndDown()
 
 void ModuleCamera::moveForwardAndBackward()
 {
-	if (App->input->GetKey(SDL_SCANCODE_W)) {
+	if (App->input->GetKey(SDL_SCANCODE_W)) { // FORWARD
 		// Translate actual position * (vectorFront (0,0,1) * speed)
 		frustum.Translate(frustum.Front() * speed);
 		// Update new position with the translation
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_S)) {
+	if (App->input->GetKey(SDL_SCANCODE_S)) { // BACKWARD
 		frustum.Translate(frustum.Front() * -speed);
+		position = frustum.Pos();
+		frustum.SetPos(position);
+	}
+}
+
+void ModuleCamera::moveLeftAndRight()
+{
+	if (App->input->GetKey(SDL_SCANCODE_A)) { // LEFT
+		// Translate actual position * (vectorFront (0,0,1) * speed)
+		frustum.Translate(frustum.WorldRight() * -speed);
+		// Update new position with the translation
+		position = frustum.Pos();
+		frustum.SetPos(position);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_D)) { // RIGHT
+		frustum.Translate(frustum.WorldRight() * speed);
 		position = frustum.Pos();
 		frustum.SetPos(position);
 	}

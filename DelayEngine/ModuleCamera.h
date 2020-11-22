@@ -26,6 +26,7 @@ public:
 	float4x4 getViewMatrix() { return viewMatrix; };
 	void goUpAndDown();
 	void moveForwardAndBackward();
+	void moveLeftAndRight();
 
 
 private:
