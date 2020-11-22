@@ -37,6 +37,7 @@ private:
 	float3 position;
 	float standardSpeed = 0.05;
 	float actualSpeed;
+	float deltaTime = 0.01;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
 

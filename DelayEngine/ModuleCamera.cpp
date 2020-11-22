@@ -23,16 +23,10 @@ ModuleCamera::~ModuleCamera()
 // Called before render is available
 bool ModuleCamera::Init()
 {
-	return true;
-}
-
-update_status ModuleCamera::PreUpdate()
-{
-	// TODO: Put in a ModuleCamera all this stuff
+	// Options frustum put here to can update rotation
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 200.0f);
 	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(90), 1.3f);
-
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
@@ -40,6 +34,11 @@ update_status ModuleCamera::PreUpdate()
 	// Rotation camera - vector (0,1,0)
 	frustum.SetUp(float3::unitY);
 
+	return true;
+}
+
+update_status ModuleCamera::PreUpdate()
+{
 	projectionMatrix = frustum.ProjectionMatrix().Transposed(); //<-- Important to transpose!
 	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!  
 	return UPDATE_CONTINUE;
@@ -148,6 +147,7 @@ void ModuleCamera::goUpAndDown()
 
 void ModuleCamera::zoomForwardAndBackward()
 {
+	//Mouse wheel should zoom in and out
 	if (App->input->GetScrollWheel() > 0 || App->input->GetKey(SDL_SCANCODE_W)) { // FORWARD
 		// Translate actual position * (vectorFront (0,0,1) * speed)
 		frustum.Translate(frustum.Front() * actualSpeed);
@@ -181,9 +181,9 @@ void ModuleCamera::moveLeftAndRight()
 void ModuleCamera::rotatePitch()
 {
 	if (App->input->GetKey(SDL_SCANCODE_UP)) { // FORWARD
-		float3 col1 = float3(cos(actualSpeed), 0, sin(actualSpeed));
-		float3 col2 = float3(0, 1, 0);
-		float3 col3 = float3(-sin(actualSpeed), 0, cos(actualSpeed));
+		float3 col1 = float3(1, 0 , 0);
+		float3 col2 = float3(0, cos(actualSpeed), -sin(actualSpeed));
+		float3 col3 = float3(0, sin(actualSpeed), cos(actualSpeed));
 		float3x3 rotationMatrix;
 		rotationMatrix.SetCol(0, col1);
 		rotationMatrix.SetCol(1, col2);
@@ -191,17 +191,25 @@ void ModuleCamera::rotatePitch()
 		doRotation(rotationMatrix);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_DOWN)) { // BACKWARD
-		//float3x3 rotationMatrix = 
-		//doRotation(rotationMatrix);
+		float3 col1 = float3(1, 0, 0);
+		float3 col2 = float3(0, cos(-actualSpeed), -sin(-actualSpeed));
+		float3 col3 = float3(0, sin(-actualSpeed), cos(-actualSpeed));
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
 	}
 }
 
 void ModuleCamera::doRotation(float3x3& rotationMatrix)
 {
 	vec oldFront = frustum.Front().Normalized();
-	frustum.SetFront(rotationMatrix.MulDir(oldFront));
+	float3 newFront = rotationMatrix.MulDir(oldFront);
+	frustum.SetFront(newFront);
 	vec oldUp = frustum.Up().Normalized();
-	frustum.SetUp(rotationMatrix.MulDir(oldUp));
+	float3 newUp = rotationMatrix.MulDir(oldUp);
+	frustum.SetUp(newUp);
 }
 
 
