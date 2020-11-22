@@ -30,6 +30,7 @@ public:
 	void zoomForwardAndBackward();
 	void moveLeftAndRight();
 	void rotatePitch();
+	void rotateYaw();
 	void doRotation(float3x3& rotationMatrix);
 
 private:

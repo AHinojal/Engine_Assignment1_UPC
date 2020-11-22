@@ -106,6 +106,7 @@ update_status ModuleCamera::Update()
 		moveLeftAndRight();
 	}
 	rotatePitch();
+	rotateYaw();
 	return UPDATE_CONTINUE;
 }
 
@@ -180,7 +181,7 @@ void ModuleCamera::moveLeftAndRight()
 
 void ModuleCamera::rotatePitch()
 {
-	if (App->input->GetKey(SDL_SCANCODE_UP)) { // FORWARD
+	if (App->input->GetKey(SDL_SCANCODE_UP)) { // LOOK UP
 		float3 col1 = float3(1, 0 , 0);
 		float3 col2 = float3(0, cos(actualSpeed), -sin(actualSpeed));
 		float3 col3 = float3(0, sin(actualSpeed), cos(actualSpeed));
@@ -190,7 +191,7 @@ void ModuleCamera::rotatePitch()
 		rotationMatrix.SetCol(2, col3);
 		doRotation(rotationMatrix);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_DOWN)) { // BACKWARD
+	if (App->input->GetKey(SDL_SCANCODE_DOWN)) { // LOOK DOWN
 		float3 col1 = float3(1, 0, 0);
 		float3 col2 = float3(0, cos(-actualSpeed), -sin(-actualSpeed));
 		float3 col3 = float3(0, sin(-actualSpeed), cos(-actualSpeed));
@@ -202,14 +203,36 @@ void ModuleCamera::rotatePitch()
 	}
 }
 
+void ModuleCamera::rotateYaw()
+{
+	if (App->input->GetKey(SDL_SCANCODE_LEFT)) { // FORWARD
+		float3 col1 = float3(cos(actualSpeed), 0, sin(actualSpeed));
+		float3 col2 = float3(0, 1, 0);
+		float3 col3 = float3(-sin(actualSpeed), 0, cos(actualSpeed));
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT)) { // BACKWARD
+		float3 col1 = float3(cos(-actualSpeed), 0, sin(-actualSpeed));
+		float3 col2 = float3(0, 1, 0);
+		float3 col3 = float3(-sin(-actualSpeed), 0, cos(-actualSpeed));
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+	}
+}
+
 void ModuleCamera::doRotation(float3x3& rotationMatrix)
 {
 	vec oldFront = frustum.Front().Normalized();
-	float3 newFront = rotationMatrix.MulDir(oldFront);
-	frustum.SetFront(newFront);
+	frustum.SetFront(rotationMatrix.MulDir(oldFront));
 	vec oldUp = frustum.Up().Normalized();
-	float3 newUp = rotationMatrix.MulDir(oldUp);
-	frustum.SetUp(newUp);
+	frustum.SetUp(rotationMatrix.MulDir(oldUp));
 }
 
 
