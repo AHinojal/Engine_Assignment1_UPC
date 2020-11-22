@@ -56,6 +56,15 @@ public:
 		return mouse_buttons[id - 1];
 	}
 
+	// Check scroll state
+	int GetScrollWheel() const {
+		return stateWheelY;
+	}
+
+	void stopScrollWheel() {
+		stateWheelY = 0;
+	}
+
 	// Check for window events last frame
 	bool GetWindowEvent(EventWindow code) const;
 
@@ -64,11 +73,12 @@ public:
 	const iPoint& GetMousePosition() const;
 
 private:
-	bool		windowEvents[WE_COUNT];
+	bool windowEvents[WE_COUNT];
 	KeyState* keyboard;
-	KeyState	mouse_buttons[NUM_MOUSE_BUTTONS];
+	KeyState mouse_buttons[NUM_MOUSE_BUTTONS];
 	iPoint mouse_motion;
 	iPoint mouse;
+	int stateWheelY = 0;
 };
 
 #endif // __MODULEINPUT_H__

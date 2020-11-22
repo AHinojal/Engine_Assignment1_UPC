@@ -104,7 +104,15 @@ update_status ModuleInput::PreUpdate()
 				break;
 			}
 			break;
-
+		// Detect mouse wheel movement
+		case SDL_MOUSEWHEEL: 
+			if (event.wheel.y > 0) {
+				stateWheelY = 1;
+			}
+			else if (event.wheel.y < 0) {
+				stateWheelY = -1;
+			}
+			break;
 		case SDL_MOUSEBUTTONDOWN:
 			mouse_buttons[event.button.button - 1] = KEY_DOWN;
 			break;

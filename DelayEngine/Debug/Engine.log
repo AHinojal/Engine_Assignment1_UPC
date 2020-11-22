@@ -1,4 +1,7 @@
-﻿  ModuleCamera.cpp
-C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.h(36,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Application.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.h(37,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ModuleCamera.cpp
+C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.h(37,22): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.cpp(34,59): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
   Engine.vcxproj -> C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\Debug\EngineMaster.exe

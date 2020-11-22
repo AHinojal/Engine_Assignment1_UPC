@@ -35,14 +35,13 @@ update_status ModuleCamera::PreUpdate()
 
 	// Move position camera
 	frustum.SetPos(position);
-	// Move camera forward and backward
+	// Move camera forward and backward - vector (0,0,1)
 	frustum.SetFront(float3::unitZ);
-	// Rotation camera
+	// Rotation camera - vector (0,1,0)
 	frustum.SetUp(float3::unitY);
 
 	projectionMatrix = frustum.ProjectionMatrix().Transposed(); //<-- Important to transpose!
-	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!
-
+	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!  
 	return UPDATE_CONTINUE;
 }
 
@@ -98,11 +97,14 @@ update_status ModuleCamera::Update()
 	// Color Grid
 	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
 
-	// CallMethods
+	// Callbacks
 	increaseCameraSpeed();
 	goUpAndDown();
-	moveForwardAndBackward();
+	zoomForwardAndBackward();
 	moveLeftAndRight();
+	rotatePitch();
+
+	App->input->stopScrollWheel(); // To control zoom with the mouse wheel
 
 	return UPDATE_CONTINUE;
 }
@@ -143,16 +145,16 @@ void ModuleCamera::goUpAndDown()
 	}
 }
 
-void ModuleCamera::moveForwardAndBackward()
+void ModuleCamera::zoomForwardAndBackward()
 {
-	if (App->input->GetKey(SDL_SCANCODE_W)) { // FORWARD
+	if (App->input->GetScrollWheel() > 0 || App->input->GetKey(SDL_SCANCODE_W)) { // FORWARD
 		// Translate actual position * (vectorFront (0,0,1) * speed)
 		frustum.Translate(frustum.Front() * actualSpeed);
-		// Update new position with the translation
-		position = frustum.Pos();
-		frustum.SetPos(position);
+			// Update new position with the translation
+			position = frustum.Pos();
+			frustum.SetPos(position);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_S)) { // BACKWARD
+	if (App->input->GetScrollWheel() < 0 || App->input->GetKey(SDL_SCANCODE_S)) { // BACKWARD
 		frustum.Translate(frustum.Front() * -actualSpeed);
 		position = frustum.Pos();
 		frustum.SetPos(position);
@@ -175,9 +177,31 @@ void ModuleCamera::moveLeftAndRight()
 	}
 }
 
+void ModuleCamera::rotatePitch()
+{
+	if (App->input->GetKey(SDL_SCANCODE_UP)) { // FORWARD
+		float3 col1 = float3(cos(actualSpeed), 0, sin(actualSpeed));
+		float3 col2 = float3(0, 1, 0);
+		float3 col3 = float3(-sin(actualSpeed), 0, cos(actualSpeed));
+		float3x3 rotationMatrix;
+		rotationMatrix.SetCol(0, col1);
+		rotationMatrix.SetCol(1, col2);
+		rotationMatrix.SetCol(2, col3);
+		doRotation(rotationMatrix);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_DOWN)) { // BACKWARD
+		//float3x3 rotationMatrix = 
+		//doRotation(rotationMatrix);
+	}
+}
 
-/*float3x3 rotationMatrix;
-vec oldFront = frustum.Front().Normalized();
-frustum.SetFront(rotationMatrix.MulDir(oldFront));
-vec oldUp = frustum.Up().Normalized();
-frustum.SetUp(rotationMatrix.MulDir(oldUp));*/
+void ModuleCamera::doRotation(float3x3& rotationMatrix)
+{
+	vec oldFront = frustum.Front().Normalized();
+	frustum.SetFront(rotationMatrix.MulDir(oldFront));
+	vec oldUp = frustum.Up().Normalized();
+	frustum.SetUp(rotationMatrix.MulDir(oldUp));
+}
+
+
+

@@ -26,15 +26,18 @@ public:
 	float4x4 getViewMatrix() { return viewMatrix; };
 	void increaseCameraSpeed();
 	void goUpAndDown();
-	void moveForwardAndBackward();
+	void zoomForwardAndBackward();
 	void moveLeftAndRight();
-
+	void rotatePitch();
+	void doRotation(float3x3& rotationMatrix);
 
 private:
 	Frustum frustum;
 	float3 position;
-	float standardSpeed = 0.02;
+	float standardSpeed = 0.05;
 	float actualSpeed;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
+
+	
 };
