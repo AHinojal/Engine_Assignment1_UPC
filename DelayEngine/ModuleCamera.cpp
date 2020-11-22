@@ -99,13 +99,14 @@ update_status ModuleCamera::Update()
 
 	// Callbacks
 	increaseCameraSpeed();
-	goUpAndDown();
-	zoomForwardAndBackward();
-	moveLeftAndRight();
+	// While Right clicking, “WASD” fps-like movement and free look around must be enabled.
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_RIGHT)){
+		goUpAndDown();
+		zoomForwardAndBackward();
+		App->input->stopScrollWheel(); // To control zoom with the mouse wheel
+		moveLeftAndRight();
+	}
 	rotatePitch();
-
-	App->input->stopScrollWheel(); // To control zoom with the mouse wheel
-
 	return UPDATE_CONTINUE;
 }
 

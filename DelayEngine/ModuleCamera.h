@@ -24,6 +24,7 @@ public:
 	void setPlaneDistance();*/
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
+	// Holding SHIFT duplicates movement speed
 	void increaseCameraSpeed();
 	void goUpAndDown();
 	void zoomForwardAndBackward();
