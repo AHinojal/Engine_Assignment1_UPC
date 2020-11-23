@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ModuleWindow.h"
 #include "SDL/include/SDL.h"
 
 #define MAX_KEYS 300
@@ -96,6 +97,12 @@ update_status ModuleInput::PreUpdate()
 				break;
 
 				//case SDL_WINDOWEVENT_ENTER:
+			case SDL_WINDOWEVENT_RESIZED: // Detection risize window
+				LOG("Detection risize window: W: %d, H: %d", event.window.data1, event.window.data2);
+				App->window->width = event.window.data1;
+				App->window->height = event.window.data2;
+				App->window->sizeChanged = true;
+				break;
 			case SDL_WINDOWEVENT_SHOWN:
 			case SDL_WINDOWEVENT_FOCUS_GAINED:
 			case SDL_WINDOWEVENT_MAXIMIZED:

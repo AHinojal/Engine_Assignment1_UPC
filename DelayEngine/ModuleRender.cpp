@@ -47,6 +47,7 @@ bool ModuleRender::Init()
 update_status ModuleRender::PreUpdate()
 {
 	// Setup Viewport
+	glViewport(0,0, App->window->width, App->window->height);
 	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
 
 	// Deleting color's buffer 
@@ -59,13 +60,15 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	/* Testing: Draw geometry
+	/*Testing: Draw geometry
 	glBegin(GL_TRIANGLES);
 		glColor3f(1.0, 0.0, 0.0);
 		glVertex2f(0, 1); //vertice 1
 		glVertex2f(-1, -1); //vertice 2
 		glVertex2f(1, -1); //vertice 3
 	glEnd();*/
+
+	renderCoordinateAxis();
 
 	return UPDATE_CONTINUE;
 }
@@ -93,5 +96,52 @@ bool ModuleRender::CleanUp()
 
 void ModuleRender::WindowResized(unsigned width, unsigned height)
 {
+	LOG("Window Resized Render - W: %d, H: %d", width, height);
 }
+
+void ModuleRender::renderCoordinateAxis()
+{
+	// FPS CAMERA CLASS
+	// Grid Engine
+	glLineWidth(1.0f);
+	float d = 200.0f;
+	glBegin(GL_LINES);
+	for (float i = -d; i <= d; i += 1.0f)
+	{
+		glVertex3f(i, 0.0f, -d);
+		glVertex3f(i, 0.0f, d);
+		glVertex3f(-d, 0.0f, i);
+		glVertex3f(d, 0.0f, i);
+	}
+	glEnd();
+
+	// Coordenate Axis
+	glLineWidth(2.0f);
+	glBegin(GL_LINES);
+
+	// red X
+	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(1.0f, 0.1f, 0.0f); glVertex3f(1.1f, -0.1f, 0.0f);
+	glVertex3f(1.1f, 0.1f, 0.0f); glVertex3f(1.0f, -0.1f, 0.0f);
+	// green Y
+	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(-0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
+	glVertex3f(0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
+	glVertex3f(0.0f, 1.15f, 0.0f); glVertex3f(0.0f, 1.05f, 0.0f);
+	// blue Z
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(-0.05f, 0.1f, 1.05f); glVertex3f(0.05f, 0.1f, 1.05f);
+	glVertex3f(0.05f, 0.1f, 1.05f); glVertex3f(-0.05f, -0.1f, 1.05f);
+	glVertex3f(-0.05f, -0.1f, 1.05f); glVertex3f(0.05f, -0.1f, 1.05f);
+	glEnd();
+	glLineWidth(1.0f);
+
+	// Color Grid
+	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
+}
+
+
 

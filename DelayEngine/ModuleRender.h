@@ -20,6 +20,8 @@ public:
 	bool CleanUp();
 	void WindowResized(unsigned width, unsigned height);
 
+	void renderCoordinateAxis();
+
 private:
 	// Change type for OpenGL Initialization
 	SDL_GLContext context;

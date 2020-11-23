@@ -13,7 +13,10 @@ ModuleCamera::ModuleCamera()
 {
 	// FOV range [0-179]
 	// Set by default in 75
-	horizontalFOV = 169;
+	verticalFOV = 90;
+	// Values Z
+	zNear = 0.1f;
+	zFar = 200.0f;
 	position = float3(0, 1, -2);
 	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
@@ -27,14 +30,13 @@ ModuleCamera::~ModuleCamera()
 // Called before render is available
 bool ModuleCamera::Init()
 {
-
 	// aspectRadio = width / height
-	aspectRadio = App->window->width / App->window->height;
-	// LOG("Aspect Radio: ", aspectRadio);
+	aspectRadio = (float)App->window->width / (float)App->window->height;
+	LOG("Aspect Radio: %f", aspectRadio);
 	// Options frustum put here to can update rotation
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
-	frustum.SetViewPlaneDistances(0.1f, 200.0f);
-	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
+	frustum.SetViewPlaneDistances(zNear, zFar);
+	frustum.SetVerticalFovAndAspectRatio(DEGTORAD(verticalFOV), aspectRadio);
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
@@ -63,13 +65,15 @@ update_status ModuleCamera::Update()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(*(viewMatrix.Transposed()).v);
 
-	printAxis();
-
 	// TRANSFORMATIONS WINDOW
-	if (App->window->sizeChanged > 1) {
-		LOG("Lo detecta la camera el cambio de tamanio");
+	if (App->window->sizeChanged) {
+		LOG("Camera detect resize window");
 		setAspectRadio();
-		frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
+		LOG("Aspect Radio: %f", aspectRadio);
+		LOG("Position Camera: %f %f %f", position.x, position.y, position.z);
+		frustum.SetVerticalFovAndAspectRatio(DEGTORAD(verticalFOV), aspectRadio);
+		//App->renderer->WindowResized(App->window->width, App->window->height);
+		App->window->sizeChanged = false;
 	}
 
 	setFOVButtons();
@@ -113,17 +117,17 @@ bool ModuleCamera::CleanUp()
 void ModuleCamera::setFOVButtons()
 {
 	if (App->input->GetKey(SDL_SCANCODE_F)) { // INCREASE FOV
-		if (horizontalFOV >= 0 && horizontalFOV < 179) {
-			horizontalFOV += 1;
+		if (verticalFOV >= 0 && verticalFOV < 179) {
+			verticalFOV += 1;
 		}
 		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_H)) { // DECREASE FOV
-		if (horizontalFOV > 0 && horizontalFOV < 180) {
-			horizontalFOV -= 1;
+		if (verticalFOV > 0 && verticalFOV < 180) {
+			verticalFOV -= 1;
 		}
 	}
-	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
+	frustum.SetVerticalFovAndAspectRatio(DEGTORAD(verticalFOV), aspectRadio);
 }
 
 void ModuleCamera::increaseCameraSpeed()
@@ -283,50 +287,6 @@ void ModuleCamera::doRotation(float3x3& rotationMatrix)
 	frustum.SetFront(rotationMatrix.MulDir(oldFront));
 	vec oldUp = frustum.Up().Normalized();
 	frustum.SetUp(rotationMatrix.MulDir(oldUp));
-}
-
-void ModuleCamera::printAxis()
-{
-	// FPS CAMERA CLASS
-	// Grid Engine
-	glLineWidth(1.0f);
-	float d = 200.0f;
-	glBegin(GL_LINES);
-	for (float i = -d; i <= d; i += 1.0f)
-	{
-		glVertex3f(i, 0.0f, -d);
-		glVertex3f(i, 0.0f, d);
-		glVertex3f(-d, 0.0f, i);
-		glVertex3f(d, 0.0f, i);
-	}
-	glEnd();
-
-	// Coordenate Axis
-	glLineWidth(2.0f);
-	glBegin(GL_LINES);
-
-	// red X
-	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(1.0f, 0.1f, 0.0f); glVertex3f(1.1f, -0.1f, 0.0f);
-	glVertex3f(1.1f, 0.1f, 0.0f); glVertex3f(1.0f, -0.1f, 0.0f);
-	// green Y
-	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
-	glVertex3f(0.05f, 1.25f, 0.0f); glVertex3f(0.0f, 1.15f, 0.0f);
-	glVertex3f(0.0f, 1.15f, 0.0f); glVertex3f(0.0f, 1.05f, 0.0f);
-	// blue Z
-	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
-	glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-0.05f, 0.1f, 1.05f); glVertex3f(0.05f, 0.1f, 1.05f);
-	glVertex3f(0.05f, 0.1f, 1.05f); glVertex3f(-0.05f, -0.1f, 1.05f);
-	glVertex3f(-0.05f, -0.1f, 1.05f); glVertex3f(0.05f, -0.1f, 1.05f);
-	glEnd();
-	glLineWidth(1.0f);
-
-	// Color Grid
-	glColor4f(1.0f, 1.0, 1.0f, 1.0f);
 }
 
 

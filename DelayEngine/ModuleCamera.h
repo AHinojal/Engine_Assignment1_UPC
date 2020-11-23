@@ -22,7 +22,7 @@ public:
 	//Methods
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
-	float getFOV() { return horizontalFOV; };
+	float getFOV() { return verticalFOV; };
 	float getAspectRadio() { return aspectRadio; };
 	// Setters Window View
 	/*void setFOV(float range) {
@@ -30,7 +30,7 @@ public:
 	}*/
 	void setFOVButtons();
 	void setAspectRadio() {
-		aspectRadio = App->window->width / App->window->height;
+		aspectRadio = (float)App->window->width / (float)App->window->height;
 	}
 	//void setPlaneDistance();
 	// Transformations Camera
@@ -49,13 +49,13 @@ private:
 	Frustum frustum;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
-	float horizontalFOV;
+	float verticalFOV;
 	float aspectRadio;
+	float zNear;
+	float zFar;
 	float3 position;
 	float standardSpeed;
 	float actualSpeed;
 	float deltaTime;
 	float oldTime;
-
-	void printAxis();
 };
