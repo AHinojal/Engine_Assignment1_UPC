@@ -11,7 +11,10 @@
 
 ModuleCamera::ModuleCamera()
 {
+	horizontalFOV = DEGTORAD(90);
+	aspectRadio = 1.3f;
 	position = float3(0, 1, -2);
+	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
 }
 
@@ -26,7 +29,7 @@ bool ModuleCamera::Init()
 	// Options frustum put here to can update rotation
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 200.0f);
-	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(90), 1.3f);
+	frustum.SetHorizontalFovAndAspectRatio(horizontalFOV, aspectRadio);
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
@@ -57,6 +60,12 @@ update_status ModuleCamera::Update()
 
 	printAxis();
 
+	// TRANSFORMATIONS WINDOW
+	if (App->window->sizeChanged > 1) {
+		LOG("Lo detecta la camera el cambio de tamanio");
+	}
+
+	// TRANSFORMATIONS CAMERA
 	deltaTime = clock() - oldTime;
 	oldTime = clock();
 

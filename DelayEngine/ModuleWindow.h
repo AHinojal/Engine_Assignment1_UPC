@@ -29,6 +29,7 @@ public:
 	// Element of the size of the window
 	int width;
 	int height;
+	boolean sizeChanged;
 };
 
 #endif // __ModuleWindow_H__

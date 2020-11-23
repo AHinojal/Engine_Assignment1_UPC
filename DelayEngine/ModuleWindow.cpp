@@ -4,6 +4,7 @@
 
 ModuleWindow::ModuleWindow()
 {
+	sizeChanged = false;
 }
 
 // Destructor
@@ -48,8 +49,26 @@ bool ModuleWindow::Init()
 		else
 		{
 			//Get window surface
-			
 			screen_surface = SDL_GetWindowSurface(window);
+
+
+			SDL_Event event;
+			while (SDL_PollEvent(&event)) {
+				switch (event.type) {
+					case SDL_WINDOWEVENT: {
+						switch (event.window.event) {
+							case SDL_WINDOWEVENT_RESIZED: {
+								width = event.window.data1;
+								height = event.window.data2;
+								LOG("Cambia el tamanio" + width + height);
+								sizeChanged = 1;
+								break;
+							}
+						}
+						break;
+					}
+				}
+			}
 		}
 	}
 

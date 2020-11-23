@@ -19,11 +19,19 @@ public:
 	bool CleanUp();
 
 	//Methods
-	/*void setPOV();
-	void setAspectRadio();
-	void setPlaneDistance();*/
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
+	float getFOV() { return horizontalFOV; };
+	float getAspectRadio() { return aspectRadio; };
+	// Setters Window View
+	void setFOV(float range) {
+		horizontalFOV = range;
+	}
+	void setAspectRadio() {
+
+	}
+	//void setPlaneDistance();
+	// Transformations Camera
 	// Holding SHIFT duplicates movement speed
 	void increaseCameraSpeed();
 	void goUpAndDown();
@@ -37,13 +45,15 @@ public:
 
 private:
 	Frustum frustum;
+	float4x4 projectionMatrix;
+	float4x4 viewMatrix;
+	float horizontalFOV;
+	float aspectRadio;
 	float3 position;
-	float standardSpeed = 0.05;
+	float standardSpeed;
 	float actualSpeed;
 	float deltaTime;
 	float oldTime;
-	float4x4 projectionMatrix;
-	float4x4 viewMatrix;
 
 	void printAxis();
 };

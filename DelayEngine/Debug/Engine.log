@@ -1,6 +1,0 @@
-﻿  ModuleCamera.cpp
-C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.h(41,22): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.cpp(29,59): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.cpp(61,17): warning C4244: '=': conversion from 'clock_t' to 'float', possible loss of data
-C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\ModuleCamera.cpp(225,21): warning C4305: '=': truncation from 'double' to 'float'
-  Engine.vcxproj -> C:\Users\alvar\OneDrive\Escritorio\Master\Engine_Assignment1_UPC\DelayEngine\Debug\EngineMaster.exe
