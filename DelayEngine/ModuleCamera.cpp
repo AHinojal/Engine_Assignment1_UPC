@@ -11,8 +11,9 @@
 
 ModuleCamera::ModuleCamera()
 {
-	horizontalFOV = DEGTORAD(90);
-	aspectRadio = 1.3f;
+	// FOV range [0-179]
+	// Set by default in 75
+	horizontalFOV = 169;
 	position = float3(0, 1, -2);
 	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
@@ -26,10 +27,14 @@ ModuleCamera::~ModuleCamera()
 // Called before render is available
 bool ModuleCamera::Init()
 {
+
+	// aspectRadio = width / height
+	aspectRadio = App->window->width / App->window->height;
+	// LOG("Aspect Radio: ", aspectRadio);
 	// Options frustum put here to can update rotation
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(0.1f, 200.0f);
-	frustum.SetHorizontalFovAndAspectRatio(horizontalFOV, aspectRadio);
+	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
@@ -63,7 +68,11 @@ update_status ModuleCamera::Update()
 	// TRANSFORMATIONS WINDOW
 	if (App->window->sizeChanged > 1) {
 		LOG("Lo detecta la camera el cambio de tamanio");
+		setAspectRadio();
+		frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
 	}
+
+	setFOVButtons();
 
 	// TRANSFORMATIONS CAMERA
 	deltaTime = clock() - oldTime;
@@ -99,6 +108,22 @@ bool ModuleCamera::CleanUp()
 	//Destroy window
 
 	return true;
+}
+
+void ModuleCamera::setFOVButtons()
+{
+	if (App->input->GetKey(SDL_SCANCODE_F)) { // INCREASE FOV
+		if (horizontalFOV >= 0 && horizontalFOV < 179) {
+			horizontalFOV += 1;
+		}
+		
+	}
+	if (App->input->GetKey(SDL_SCANCODE_H)) { // DECREASE FOV
+		if (horizontalFOV > 0 && horizontalFOV < 180) {
+			horizontalFOV -= 1;
+		}
+	}
+	frustum.SetHorizontalFovAndAspectRatio(DEGTORAD(horizontalFOV), aspectRadio);
 }
 
 void ModuleCamera::increaseCameraSpeed()

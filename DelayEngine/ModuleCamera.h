@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "ModuleWindow.h"
 #include "SDL/include/SDL.h"
 #include "MathGeoLib/Geometry/Frustum.h"
 #include "MathGeoLib/Math/float4x4.h"
@@ -24,11 +25,12 @@ public:
 	float getFOV() { return horizontalFOV; };
 	float getAspectRadio() { return aspectRadio; };
 	// Setters Window View
-	void setFOV(float range) {
+	/*void setFOV(float range) {
 		horizontalFOV = range;
-	}
+	}*/
+	void setFOVButtons();
 	void setAspectRadio() {
-
+		aspectRadio = App->window->width / App->window->height;
 	}
 	//void setPlaneDistance();
 	// Transformations Camera

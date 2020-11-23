@@ -60,8 +60,8 @@ bool ModuleWindow::Init()
 							case SDL_WINDOWEVENT_RESIZED: {
 								width = event.window.data1;
 								height = event.window.data2;
-								LOG("Cambia el tamanio" + width + height);
-								sizeChanged = 1;
+								LOG("Cambia el tamanio");
+								//sizeChanged = 1;
 								break;
 							}
 						}
