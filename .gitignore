@@ -33,3 +33,4 @@
 # External Folders
 *.vs
 *x64
+*Debug
