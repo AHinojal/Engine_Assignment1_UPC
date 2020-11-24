@@ -19,6 +19,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void WindowResized(unsigned width, unsigned height);
+	SDL_GLContext getContext() { return context; }
 
 	void renderCoordinateAxis();
 
