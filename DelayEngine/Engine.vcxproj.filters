@@ -153,6 +153,7 @@
     <ClCompile Include="ImGUI\imgui_widgets.cpp">
       <Filter>ImGUI</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -418,6 +419,7 @@
     <ClInclude Include="ImGUI\imstb_truetype.h">
       <Filter>ImGUI</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MathGeoLab">
@@ -428,6 +430,9 @@
     </Filter>
     <Filter Include="ImGUI">
       <UniqueIdentifier>{f2c91e64-2ef5-43e5-b17a-c0f04055e2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{2091d963-d7f6-4bd5-8734-2f04484714d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +456,12 @@
     </None>
     <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Matrix.inl">
       <Filter>MathGeoLab</Filter>
+    </None>
+    <None Include="Game\fileShaders\default_fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Game\fileShaders\default_vertex.glsl">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

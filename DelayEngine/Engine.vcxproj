@@ -228,6 +228,7 @@
     <ClInclude Include="ModuleCamera.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleProgram.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Utils\Point.h" />
@@ -287,6 +288,7 @@
     <ClCompile Include="ModuleCamera.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleProgram.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
@@ -298,6 +300,8 @@
     <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\float2.inl" />
     <None Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\Matrix.inl" />
+    <None Include="Game\fileShaders\default_fragment.glsl" />
+    <None Include="Game\fileShaders\default_vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

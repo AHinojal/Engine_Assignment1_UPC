@@ -26,4 +26,6 @@ public:
 private:
 	// Change type for OpenGL Initialization
 	SDL_GLContext context;
+	// VBO
+	unsigned vbo;
 };

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+#include "ModuleProgram.h"
 #include "SDL.h"
 #include <GL\glew.h>
 
@@ -41,6 +42,12 @@ bool ModuleRender::Init()
 	//glEnable(GL_CULL_FACE); // Enable cull backward faces
 	//glFrontFace(GL_CCW); // Front faces will be counter clockwise
 
+	// WORKING WITH VBO
+	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
+
 	return true;
 }
 
@@ -68,7 +75,16 @@ update_status ModuleRender::Update()
 		glVertex2f(1, -1); //vertice 3
 	glEnd();*/
 
-	renderCoordinateAxis();
+	// renderCoordinateAxis();
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glEnableVertexAttribArray(0);
+	// size = 3 float per vertex
+	// stride = 0 is equivalent to stride = sizeof(float)*3
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glUseProgram(App->program->GetProgram());
+	// 1 triangle to draw = 3 vertices
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	return UPDATE_CONTINUE;
 }
@@ -83,13 +99,12 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-
+	// Delete VBO
+	glDeleteBuffers(1, &vbo);
 	// OpenGL Destruction context
 	SDL_GL_DeleteContext(context);
 
 	LOG("Destroying renderer");
-
-	//Destroy window
 
 	return true;
 }
