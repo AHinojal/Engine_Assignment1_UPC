@@ -24,6 +24,8 @@ bool ModuleEditor::Init()
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // Enable Docking
 
     // Setup Dear ImGui style
     ImGui::StyleColorsClassic();
@@ -48,22 +50,10 @@ update_status ModuleEditor::PreUpdate()
 update_status ModuleEditor::Update()
 {
     showMainMenuBar();
-
-    bool show_another_window = true;
-
-    if (show_another_window)
-    {
-        ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-        ImGui::Text("Hello from another window!");
-        if (ImGui::Button("Close Me"))
-            show_another_window = false;
-        checkWindowHovered();
-        ImGui::End();
-    }
-
-
-
-
+    //setDockSpace();
+    //setScene();
+    //setLeftMenu();
+    checkWindowHovered();
 
 
     // Rendering
@@ -110,4 +100,30 @@ void ModuleEditor::showMainMenuBar()
         }
         ImGui::EndMainMenuBar();
     }
+}
+
+void ModuleEditor::setScene()
+{
+    ImGui::Begin("Scene Window");
+
+    ImVec2 pos = ImGui::GetCursorScreenPos();
+
+    ImGui::GetWindowDrawList()->AddImage(
+        (void*)App->window->window, ImVec2(ImGui::GetCursorScreenPos()),
+        ImVec2(ImGui::GetCursorScreenPos().x + App->window->width / 2, ImGui::GetCursorScreenPos().y + App->window->height / 2), ImVec2(0, 1), ImVec2(1, 0));
+
+    ImGui::End();
+}
+
+void ModuleEditor::setLeftMenu()
+{
+    ImGui::Begin("LEFT");
+    checkWindowHovered();
+
+    ImGui::End();
+}
+
+void ModuleEditor:: setDockSpace()
+{
+    ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 }

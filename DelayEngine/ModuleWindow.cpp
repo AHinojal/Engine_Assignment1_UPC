@@ -40,33 +40,7 @@ bool ModuleWindow::Init()
 		}
 
 		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
-		/* Dont work because not render scene
-		Uint32 windowID = SDL_GetWindowID(window);
-
-		while (true) {
-			static SDL_Event event;
-
-			while (SDL_PollEvent(&event) != 0)
-			{
-				switch (event.type)
-				{
-				case SDL_WINDOWEVENT:
-					if (event.window.windowID == windowID) {
-						switch (event.window.event)
-						{
-						case SDL_WINDOWEVENT_RESIZED:
-							width = event.window.data1;
-							height = event.window.data2;
-							LOG("Deteccion risize pantalla Window");
-							break;
-						}
-						break;
-					}
-				}
-				break;
-			}
-		}*/
-		
+	
 
 		if(window == NULL)
 		{

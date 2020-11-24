@@ -22,6 +22,9 @@ public:
 private:
 	bool focused;
 	void showMainMenuBar();
+	void setScene();
+	void setLeftMenu();
+	void setDockSpace();
 	update_status actualStatus;
 	void visitGitHub() {
 		ShellExecute(NULL, "open", "https://github.com/AHinojal/Engine_Assignment1_UPC", NULL, NULL, SW_SHOWNORMAL);
