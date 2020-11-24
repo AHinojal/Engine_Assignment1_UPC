@@ -3,6 +3,7 @@
 #include "ModuleCamera.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleEditor.h"
 #include "SDL.h"
 #include <GL\glew.h>
 #include "MathGeoLib/Geometry/Frustum.h"
@@ -261,7 +262,7 @@ void ModuleCamera::rotatePitchAndYawWithMouse()
 	iPoint point = App->input->GetMouseMotion();
 	float3x3 rotationMatrix;
 	actualSpeed = 0.001;
-	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT)) {
+	if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) && !App->editor->getFocused()) {
 		// PITCH
 		float3 col1 = float3(1, 0, 0);
 		float3 col2 = float3(0, cos(point.y * actualSpeed * deltaTime), -sin(point.y * actualSpeed * deltaTime));
