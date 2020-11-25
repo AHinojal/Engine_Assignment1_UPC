@@ -22,6 +22,7 @@ public:
 	//Methods
 	float4x4 getProjectionMatrix() { return projectionMatrix; };
 	float4x4 getViewMatrix() { return viewMatrix; };
+	float4x4 getModelMatrix() { return modelMatrix; };
 	float getFOV() { return verticalFOV; };
 	float getAspectRadio() { return aspectRadio; };
 	// Setters Window View
@@ -49,6 +50,7 @@ private:
 	Frustum frustum;
 	float4x4 projectionMatrix;
 	float4x4 viewMatrix;
+	float4x4 modelMatrix;
 	float verticalFOV;
 	float aspectRadio;
 	float zNear;

@@ -6,6 +6,7 @@
 #include "ModuleCamera.h"
 #include "ModuleEditor.h"
 #include "ModuleProgram.h"
+#include "ModuleDebugDraw.h"
 
 using namespace std;
 
@@ -16,7 +17,9 @@ Application::Application()
 	modules.push_back(input = new ModuleInput());
 	modules.push_back(camera = new ModuleCamera());
 	modules.push_back(renderer = new ModuleRender());
+	modules.push_back(debugDraw = new ModuleDebugDraw());
 	modules.push_back(editor = new ModuleEditor());
+	// ModuleProgram is the last one - to load correctly the shaders
 	modules.push_back(program = new ModuleProgram());
 
 }

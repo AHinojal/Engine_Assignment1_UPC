@@ -8,6 +8,7 @@
 #include <GL\glew.h>
 #include "MathGeoLib/Geometry/Frustum.h"
 #include "MathGeoLib/Math/float3x3.h"
+#include "MathGeoLib/Math/float4x4.h"
 #include "MathGeoLib/Math/float3.h"
 
 ModuleCamera::ModuleCamera()
@@ -16,9 +17,9 @@ ModuleCamera::ModuleCamera()
 	// Set by default in 75
 	verticalFOV = 90;
 	// Values Z
-	zNear = 0.1f;
-	zFar = 200.0f;
-	position = float3(0, 1, -2);
+	zNear = 0.2f;
+	zFar = 100.0f; //200.0f
+	position = float3(0, 1, 4);
 	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
 }
@@ -38,10 +39,11 @@ bool ModuleCamera::Init()
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetViewPlaneDistances(zNear, zFar);
 	frustum.SetVerticalFovAndAspectRatio(DEGTORAD(verticalFOV), aspectRadio);
+	//frustum.SetVerticalFovAndAspectRatio(verticalFOV, aspectRadio);
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
-	frustum.SetFront(float3::unitZ);
+	frustum.SetFront(-float3::unitZ);
 	// Rotation camera - vector (0,1,0)
 	frustum.SetUp(float3::unitY);
 
@@ -50,8 +52,11 @@ bool ModuleCamera::Init()
 
 update_status ModuleCamera::PreUpdate()
 {
-	projectionMatrix = frustum.ProjectionMatrix().Transposed(); //<-- Important to transpose!
+	projectionMatrix = frustum.ProjectionMatrix(); //<-- Important to transpose!
 	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!  
+	modelMatrix = float4x4::FromTRS(float3(2.0f, 0.0f, 0.0f), float4x4::RotateZ(pi / 4.0f), float3(2.0f, 1.0f, 0.0f));
+	//modelMatrix = float4x4::identity;
+
 	return UPDATE_CONTINUE;
 }
 

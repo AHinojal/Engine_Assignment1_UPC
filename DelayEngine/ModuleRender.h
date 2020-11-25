@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "SDL/include/SDL.h"
+#include "MathGeoLib/Math/float4x4.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -28,4 +29,6 @@ private:
 	SDL_GLContext context;
 	// VBO
 	unsigned vbo;
+	// transforms in render - maybe in camera?
+	float4x4 model, view, projection;
 };

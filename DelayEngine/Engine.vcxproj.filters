@@ -154,6 +154,7 @@
       <Filter>ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="ModuleProgram.cpp" />
+    <ClCompile Include="ModuleDebugDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -420,6 +421,13 @@
       <Filter>ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="ModuleProgram.h" />
+    <ClInclude Include="Game\debug_draw\debug_draw.hpp">
+      <Filter>DebugDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\debug_draw\debugdraw.h">
+      <Filter>DebugDraw</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleDebugDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MathGeoLab">
@@ -433,6 +441,9 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{2091d963-d7f6-4bd5-8734-2f04484714d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugDraw">
+      <UniqueIdentifier>{799144c3-f45a-4640-8183-fe5b3f2ce6f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
