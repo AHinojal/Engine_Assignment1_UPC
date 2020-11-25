@@ -62,7 +62,7 @@ update_status ModuleRender::PreUpdate()
 	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
 
 	// Deleting color's buffer 
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return UPDATE_CONTINUE;
@@ -71,13 +71,9 @@ update_status ModuleRender::PreUpdate()
 // Called every draw update
 update_status ModuleRender::Update()
 {
-	/*Testing: Draw geometry
-	glBegin(GL_TRIANGLES);
-		glColor3f(1.0, 0.0, 0.0);
-		glVertex2f(0, 1); //vertice 1
-		glVertex2f(-1, -1); //vertice 2
-		glVertex2f(1, -1); //vertice 3
-	glEnd();*/
+	// Put axis here -> not print triangle if you put it before glDrawArrays
+	renderCoordinateAxis();
+	App->debugDraw->Draw(App->camera->getViewMatrix(), App->camera->getProjectionMatrix(), App->window->width, App->window->height);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glEnableVertexAttribArray(0);
@@ -91,8 +87,6 @@ update_status ModuleRender::Update()
 	glUniformMatrix4fv(glGetUniformLocation(App->program->GetProgram(), "proj"), 1, GL_TRUE, &App->camera->getProjectionMatrix()[0][0]);
 	// TODO: bind buffer and vertex attributes
 
-	renderCoordinateAxis();
-	App->debugDraw->Draw(App->camera->getViewMatrix(), App->camera->getProjectionMatrix(), App->window->width, App->window->height);
 	// 1 triangle to draw = 3 vertices
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
