@@ -155,6 +155,7 @@
     </ClCompile>
     <ClCompile Include="ModuleProgram.cpp" />
     <ClCompile Include="ModuleDebugDraw.cpp" />
+    <ClCompile Include="ModuleTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -428,6 +429,7 @@
       <Filter>DebugDraw</Filter>
     </ClInclude>
     <ClInclude Include="ModuleDebugDraw.h" />
+    <ClInclude Include="ModuleTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MathGeoLab">

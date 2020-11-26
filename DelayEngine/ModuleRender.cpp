@@ -46,12 +46,6 @@ bool ModuleRender::Init()
 	//glEnable(GL_CULL_FACE); // Enable cull backward faces
 	//glFrontFace(GL_CCW); // Front faces will be counter clockwise
 
-	// WORKING WITH VBO
-	float vtx_data[] = { -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
-
 	return true;
 }
 
@@ -65,6 +59,7 @@ update_status ModuleRender::PreUpdate()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
 	return UPDATE_CONTINUE;
 }
 
@@ -75,27 +70,57 @@ update_status ModuleRender::Update()
 	renderCoordinateAxis();
 	App->debugDraw->Draw(App->camera->getViewMatrix(), App->camera->getProjectionMatrix(), App->window->width, App->window->height);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glEnableVertexAttribArray(0);
-	// size = 3 float per vertex
-	// stride = 0 is equivalent to stride = sizeof(float)*3
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	// TODO: retrieve model view and projection -> Get it from the camera
 	glUseProgram(App->program->GetProgram());
 	glUniformMatrix4fv(glGetUniformLocation(App->program->GetProgram(), "model"), 1, GL_TRUE, &App->camera->getModelMatrix()[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(App->program->GetProgram(), "view"), 1, GL_TRUE, &App->camera->getViewMatrix()[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(App->program->GetProgram(), "proj"), 1, GL_TRUE, &App->camera->getProjectionMatrix()[0][0]);
 	// TODO: bind buffer and vertex attributes
+	// WORKING WITH VBO
+	float vtx_data[] = {
+		// first triangle
+		-1.0f, -1.0f, 0.0f, // bottom left 0
+		1.0f, -1.0f, 0.0f, // bottom right 1
+		1.0f, 1.0f, 0.0f, // top left 2
+		-1.0f, 1.0f, 0.0f,  // top right 3
 
+	};
+	// CREATE VAO
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+	// CREATE VBO
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo); // set vbo active
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
+	unsigned int indexes[] = {  // note that we start from 0!
+		0, 1, 2,   // first triangle
+		2, 3, 0 // second triangle
+	};
+
+	// CREATE EBO
+	glGenBuffers(1, &ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexes), indexes, GL_STATIC_DRAW);
+	// size = 3 float per vertex
+	// stride = 0 is equivalent to stride = sizeof(float)*3
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glEnableVertexAttribArray(0);
+
+	
 	// 1 triangle to draw = 3 vertices
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+	//// 2 triangle to draw
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
+	glBindVertexArray(0);
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleRender::PostUpdate()
 {
-	// OpenGL Swap Frame Buffer
+
+
+ 	// OpenGL Swap Frame Buffer
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }
