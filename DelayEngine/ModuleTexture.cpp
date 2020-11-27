@@ -16,6 +16,8 @@ ModuleTexture::~ModuleTexture()
 bool ModuleTexture::Init()
 {
 	ilInit();
+	ilEnable(IL_ORIGIN_SET);
+	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 
 	return true;
 }
@@ -66,7 +68,8 @@ unsigned ModuleTexture::LoadTexture()
 		  interpolation for magnification filter */
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); /* We will use linear
 		  interpolation for minifying filter */
-		
+		// Flippin texture 
+
 		glTexImage2D(GL_TEXTURE_2D,
 			0,
 			ilGetInteger(IL_IMAGE_BPP),
