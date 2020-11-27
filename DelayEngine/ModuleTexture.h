@@ -13,6 +13,8 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+	unsigned LoadTexture();
+
 private:
 };
 

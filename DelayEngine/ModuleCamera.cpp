@@ -54,8 +54,8 @@ update_status ModuleCamera::PreUpdate()
 {
 	projectionMatrix = frustum.ProjectionMatrix(); //<-- Important to transpose!
 	viewMatrix = frustum.ViewMatrix(); //<-- Important to transpose!  
-	modelMatrix = float4x4::FromTRS(float3(2.0f, 0.0f, 0.0f), float4x4::RotateZ(pi / 4.0f), float3(2.0f, 1.0f, 0.0f));
-	//modelMatrix = float4x4::identity;
+	//modelMatrix = float4x4::FromTRS(float3(2.0f, 0.0f, 0.0f), float4x4::RotateZ(pi / 4.0f), float3(2.0f, 1.0f, 0.0f));
+	modelMatrix = float4x4::identity;
 
 	return UPDATE_CONTINUE;
 }

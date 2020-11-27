@@ -1,12 +1,13 @@
-#include "Globals.h"
+﻿#include "Globals.h"
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleCamera.h"
 #include "ModuleProgram.h"
 #include "ModuleDebugDraw.h"
+#include "ModuleTexture.h"
 #include "SDL.h"
-#include <GL\glew.h>
+#include <GL/glew.h>
 #include "Game/debug_draw/debugdraw.h"
 #include "MathGeoLib/Math/float4x4.h"
 
@@ -79,12 +80,26 @@ update_status ModuleRender::Update()
 	// WORKING WITH VBO
 	float vtx_data[] = {
 		// first triangle
-		-1.0f, -1.0f, 0.0f, // bottom left 0
-		1.0f, -1.0f, 0.0f, // bottom right 1
-		1.0f, 1.0f, 0.0f, // top left 2
-		-1.0f, 1.0f, 0.0f,  // top right 3
+		-1.0f, -1.0f, 0.0f, // ← v0 pos
+		1.0f, -1.0f, 0.0f, // ← v1 pos
+		-1.0f, 1.0f, 0.0f, // ← v2 pos
+		1.0f, 1.0f, 0.0f, // ← v3 pos
 
+		0.0f, 0.0f, // ← v0 texcoord
+		1.0f, .0f, // ← v1 texcoord
+		0.0f, 1.0f, // ← v2 texcoord
+		1.0f, 1.0f, // ← v2 texcoord
+
+
+		/*Testing: Triangle
+		-1.0f, -1.0f, 0.0f, // ← v0 pos
+		1.0f, -1.0f, 0.0f, // ← v1 pos
+		0.0f, 1.0f, 0.0f, // ← v2 pos
+		0.0f, 0.0f, // ← v0 texcoord
+		1.0f, 0.0f, // ← v1 texcoord
+		0.5f, -1.0f, // ← v2 texcoord*/
 	};
+
 	// CREATE VAO
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -94,7 +109,7 @@ update_status ModuleRender::Update()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vtx_data), vtx_data, GL_STATIC_DRAW);
 	unsigned int indexes[] = {  // note that we start from 0!
 		0, 1, 2,   // first triangle
-		2, 3, 0 // second triangle
+		2, 1, 3 // second triangle
 	};
 
 	// CREATE EBO
@@ -105,7 +120,13 @@ update_status ModuleRender::Update()
 	// stride = 0 is equivalent to stride = sizeof(float)*3
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glEnableVertexAttribArray(0);
-
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(float) * 4 * 3)); // last parameter buffer offset
+	glEnableVertexAttribArray(1);
+	
+	// Enable texture
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, App->texture->LoadTexture());
+	glUniform1i(glGetUniformLocation(App->program->GetProgram(), "mytexture"), 0);
 	
 	// 1 triangle to draw = 3 vertices
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -128,8 +149,10 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	// Delete VBO
+	// Delete VBO, VAO & EBO
 	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &vao);
+	glDeleteBuffers(1, &ebo);
 	// OpenGL Destruction context
 	SDL_GL_DeleteContext(context);
 

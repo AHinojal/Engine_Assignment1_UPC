@@ -23,7 +23,6 @@ Application::Application()
 	// ModuleProgram is the last one - to load correctly the shaders
 	modules.push_back(program = new ModuleProgram());
 	modules.push_back(texture = new ModuleTexture());
-
 }
 
 Application::~Application()
