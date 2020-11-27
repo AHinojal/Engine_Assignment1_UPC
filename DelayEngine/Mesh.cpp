@@ -91,6 +91,11 @@ void Mesh::Draw(const std::vector<unsigned>& model_textures)
 	glBindVertexArray(0);
 }
 
+void Mesh::CleanUp()
+{
+
+}
+
 void Mesh::DrawLenna() {
 	// TODO: retrieve model view and projection -> Get it from the camera
 	glUseProgram(App->program->GetProgram());

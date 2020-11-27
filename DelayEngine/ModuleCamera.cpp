@@ -19,7 +19,7 @@ ModuleCamera::ModuleCamera()
 	// Values Z
 	zNear = 0.2f;
 	zFar = 100.0f; //200.0f
-	position = float3(0, 1, 4);
+	position = float3(0, 2, 6);
 	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
 }

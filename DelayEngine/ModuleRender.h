@@ -27,8 +27,6 @@ public:
 private:
 	// Change type for OpenGL Initialization
 	SDL_GLContext context;
-	// VBO & EBO
-	unsigned vbo, vao, ebo;
-	// transforms in render - maybe in camera?
+	// transforms in camera
 	float4x4 model, view, projection;
 };

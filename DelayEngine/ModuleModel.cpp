@@ -3,6 +3,7 @@
 #include "ModuleModel.h"
 #include "ModuleTexture.h"
 #include "ModuleProgram.h"
+#include "Mesh.h"
 #include <assimp/cimport.h>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -37,6 +38,12 @@ update_status ModuleModel::PostUpdate()
 
 bool ModuleModel::CleanUp()
 {
+    /*for (Mesh m : meshes) {
+        // Delete VBO, VAO & EBO
+        glDeleteBuffers(1, &m.getVBO());
+        glDeleteBuffers(1, &m.getVAO());
+        glDeleteBuffers(1, &m.getEBO());
+    }*/
     return true;
 }
 

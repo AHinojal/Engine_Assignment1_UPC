@@ -39,6 +39,12 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_RESIZABLE;
 		}
 
+		//The window size of the editor must be in relation to the desktop size (you can request the desktop screen size from SDL).
+		SDL_DisplayMode DM;
+		SDL_GetCurrentDisplayMode(0, &DM);
+		width = DM.w;
+		height = DM.h;
+
 		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 	
 
@@ -51,6 +57,8 @@ bool ModuleWindow::Init()
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
+			// Get width and height
+			LOG("Window Size - W: %d, H: %d", width, height);
 		}
 
 		

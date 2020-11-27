@@ -92,10 +92,6 @@ update_status ModuleRender::PostUpdate()
 // Called before quitting
 bool ModuleRender::CleanUp()
 {
-	// Delete VBO, VAO & EBO
-	glDeleteBuffers(1, &vbo);
-	glDeleteBuffers(1, &vao);
-	glDeleteBuffers(1, &ebo);
 	// OpenGL Destruction context
 	SDL_GL_DeleteContext(context);
 

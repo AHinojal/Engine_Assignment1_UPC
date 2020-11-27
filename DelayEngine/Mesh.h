@@ -9,7 +9,6 @@ public:
 	Mesh(unsigned programId);
 	~Mesh();
 
-
 	void CreateVAO();
 	void LoadVBO(const aiMesh* mesh);
 	void LoadEBO(const aiMesh* mesh);
@@ -17,6 +16,7 @@ public:
 	unsigned getVBO() { return vbo; };
 	unsigned getVAO() { return vao; };
 	unsigned getEBO() { return ebo; };
+	void CleanUp();
 
 	void DrawLenna();
 
