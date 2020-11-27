@@ -15,6 +15,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
+	void CreateProgram();
 	char* LoadShaderSource(const char* shader_file_name);
 	unsigned CompileShader(unsigned type, const char* source);
 	unsigned GetProgram() { return programId; }

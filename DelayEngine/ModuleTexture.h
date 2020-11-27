@@ -13,7 +13,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	unsigned LoadTexture();
+	unsigned LoadTexture(char* fileData);
 
 private:
 };

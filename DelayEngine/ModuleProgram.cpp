@@ -11,6 +11,33 @@ ModuleProgram::~ModuleProgram()
 
 bool ModuleProgram::Init()
 {
+	
+	return true;
+}
+
+update_status ModuleProgram::PreUpdate()
+{
+	return UPDATE_CONTINUE;
+}
+
+update_status ModuleProgram::Update()
+{
+	return UPDATE_CONTINUE;
+}
+
+update_status ModuleProgram::PostUpdate()
+{
+	return UPDATE_CONTINUE;
+}
+
+bool ModuleProgram::CleanUp()
+{
+	glDeleteProgram(programId);
+	return true;
+}
+
+void ModuleProgram::CreateProgram()
+{
 	vertexShader = CompileShader(GL_VERTEX_SHADER, LoadShaderSource("..\\Game\\fileShaders\\default_vertex.glsl"));
 	fragmentShader = CompileShader(GL_FRAGMENT_SHADER, LoadShaderSource("..\\Game\\fileShaders\\default_fragment.glsl"));
 
@@ -35,29 +62,6 @@ bool ModuleProgram::Init()
 	}
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
-	
-	return true;
-}
-
-update_status ModuleProgram::PreUpdate()
-{
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleProgram::Update()
-{
-	return UPDATE_CONTINUE;
-}
-
-update_status ModuleProgram::PostUpdate()
-{
-	return UPDATE_CONTINUE;
-}
-
-bool ModuleProgram::CleanUp()
-{
-	glDeleteProgram(programId);
-	return true;
 }
 
 char* ModuleProgram::LoadShaderSource(const char* shader_file_name)

@@ -16,6 +16,7 @@ ModuleTexture::~ModuleTexture()
 bool ModuleTexture::Init()
 {
 	ilInit();
+	// To Flip image that is top -left and we need bottom-up
 	ilEnable(IL_ORIGIN_SET);
 	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 
@@ -42,7 +43,7 @@ bool ModuleTexture::CleanUp()
 	return true;
 }
 
-unsigned ModuleTexture::LoadTexture()
+unsigned ModuleTexture::LoadTexture(char* fileData)
 {
 	ILuint texid;
 	GLuint image;
@@ -50,7 +51,8 @@ unsigned ModuleTexture::LoadTexture()
 
 	ilGenImages(1, &texid); /* Generation of one image name */
 	ilBindImage(texid); /* Binding of image name */
-	success = ilLoadImage("..\\Game\\test_lenna.png"); /* Loading of image "image.jpg" */
+	//success = ilLoadImage("..\\Game\\test_lenna.png"); /* Loading of image "image.jpg" */
+	success = ilLoadImage(fileData); /* Loading of image "image.jpg" */
 
 	if (success) /* If no error occured: */
 	{
