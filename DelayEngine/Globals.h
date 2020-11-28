@@ -33,3 +33,4 @@ enum update_status
 #define TITLE "Super Delay Engine"
 #define DEGTORAD(angleDegrees) ((angleDegrees) * M_PI / 180.0)
 #define GLSL_VERSION "#version 130"
+#define GITHUB_URL "https://github.com/AHinojal/Engine_Assignment1_UPC"

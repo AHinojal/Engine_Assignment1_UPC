@@ -54,8 +54,6 @@ update_status ModuleEditor::Update()
     //setScene();
     setLeftMenu();
     setBottomMenu();
-    checkWindowHovered();
-
 
     // Rendering
     ImGui::Render();
@@ -80,17 +78,14 @@ bool ModuleEditor::CleanUp()
 
 void ModuleEditor::showMainMenuBar()
 {
-    if (ImGui::BeginMainMenuBar())
-    {
-        if (ImGui::BeginMenu("GitHub"))
-        {
-            visitGitHub();
-            //ImGui::EndMenu();
-        }        
+    ImGui::BeginMainMenuBar();  
         if (ImGui::BeginMenu("About"))
         {
             ImGui::MenuItem("Engine name:", TITLE);
             ImGui::MenuItem("Author:", "ALVARO HINOJAL BLANCO");
+            if (ImGui::MenuItem("GitHub:", GITHUB_URL)) {
+                visitGitHub();
+            }
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Quit"))
@@ -99,8 +94,7 @@ void ModuleEditor::showMainMenuBar()
             actualStatus = UPDATE_STOP;
             ImGui::EndMenu();
         }
-        ImGui::EndMainMenuBar();
-    }
+    ImGui::EndMainMenuBar();
 }
 
 void ModuleEditor::setScene()

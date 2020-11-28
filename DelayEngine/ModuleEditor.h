@@ -28,7 +28,7 @@ private:
 	void setDockSpace();
 	update_status actualStatus;
 	void visitGitHub() {
-		ShellExecute(NULL, "open", "https://github.com/AHinojal/Engine_Assignment1_UPC", NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, "open", GITHUB_URL, NULL, NULL, SW_SHOWNORMAL);
 	}
 };
 
