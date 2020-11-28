@@ -17,21 +17,18 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	bool getFocused() { return focused; };
+	bool getFocused() { return focusedLeft || focusedBottom; };
 
 private:
-	bool focused;
+	bool focusedLeft, focusedBottom;
 	void showMainMenuBar();
 	void setScene();
 	void setLeftMenu();
+	void setBottomMenu();
 	void setDockSpace();
 	update_status actualStatus;
 	void visitGitHub() {
 		ShellExecute(NULL, "open", "https://github.com/AHinojal/Engine_Assignment1_UPC", NULL, NULL, SW_SHOWNORMAL);
-	}
-	void checkWindowHovered() {
-		// Better focused instead of hovered...in buttons hovered work wrong
-		focused = ImGui::IsWindowFocused() ? true : false;
 	}
 };
 

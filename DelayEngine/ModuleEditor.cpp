@@ -52,7 +52,8 @@ update_status ModuleEditor::Update()
     showMainMenuBar();
     //setDockSpace();
     //setScene();
-    //setLeftMenu();
+    setLeftMenu();
+    setBottomMenu();
     checkWindowHovered();
 
 
@@ -119,8 +120,14 @@ void ModuleEditor::setScene()
 void ModuleEditor::setLeftMenu()
 {
     ImGui::Begin("LEFT");
-    checkWindowHovered();
+        focusedLeft = ImGui::IsWindowFocused();
+    ImGui::End();
+}
 
+void ModuleEditor::setBottomMenu()
+{
+    ImGui::Begin("BOTTOM");
+        focusedBottom = ImGui::IsWindowFocused();
     ImGui::End();
 }
 

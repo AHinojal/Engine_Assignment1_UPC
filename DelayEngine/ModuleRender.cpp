@@ -57,7 +57,7 @@ bool ModuleRender::Init()
 update_status ModuleRender::PreUpdate()
 {
 	// Setup Viewport
-	glViewport(0,0, App->window->width, App->window->height);
+	glViewport(App->window->width - App->window->width / 1.25, App->window->height - App->window->height / 1.25, App->window->width / 1.25, App->window->height / 1.25);
 	SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
 
 	// Deleting color's buffer 
