@@ -85,6 +85,7 @@ unsigned ModuleTexture::LoadTexture(char* fileData)
 	else
 	{
 		/* Error occured */
+		LOG("Texture not found.\n");
 		SDL_Quit();
 	}
 	ilDeleteImages(1, &texid); /* Because we have already copied image data into texture data

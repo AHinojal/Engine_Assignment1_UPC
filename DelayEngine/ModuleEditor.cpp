@@ -108,9 +108,10 @@ void ModuleEditor::setScene()
 
     ImVec2 pos = ImGui::GetCursorScreenPos();
 
-    ImGui::GetWindowDrawList()->AddImage(
-        (void*)App->window->window, ImVec2(ImGui::GetCursorScreenPos()),
-        ImVec2(ImGui::GetCursorScreenPos().x + App->window->width / 2, ImGui::GetCursorScreenPos().y + App->window->height / 2), ImVec2(0, 1), ImVec2(1, 0));
+    //Give us the texture but not the rendering (App->camera,window,renderer->Update())
+    /*ImGui::GetWindowDrawList()->AddImage(
+        (void*)App->window->Update(), ImVec2(ImGui::GetCursorScreenPos()),
+        ImVec2(ImGui::GetCursorScreenPos().x + App->window->width / 2, ImGui::GetCursorScreenPos().y + App->window->height / 2), ImVec2(0, 1), ImVec2(1, 0));*/
 
     ImGui::End();
 }

@@ -25,6 +25,7 @@ public:
 	float4x4 getModelMatrix() { return modelMatrix; };
 	float getFOV() { return verticalFOV; };
 	float getAspectRadio() { return aspectRadio; };
+	Frustum getFrustum() { return frustum; };
 	// Setters Window View
 	/*void setFOV(float range) {
 		horizontalFOV = range;
@@ -44,6 +45,7 @@ public:
 	void rotateYaw();
 	void rotateRoll();
 	void rotatePitchAndYawWithMouse();
+	void focusCamera();
 	void doRotation(float3x3& rotationMatrix);
 
 private:

@@ -77,6 +77,7 @@ update_status ModuleRender::Update()
 	/*Mesh m;
 	m.DrawLenna();*/
 
+	// Draw out model
 	App->model->Draw();
 
 	return UPDATE_CONTINUE;

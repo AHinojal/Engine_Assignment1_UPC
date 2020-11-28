@@ -101,6 +101,7 @@ update_status ModuleCamera::Update()
 	rotateYaw();
 	rotateRoll();
 	rotatePitchAndYawWithMouse();
+	focusCamera();
 
 	return UPDATE_CONTINUE;
 }
@@ -122,11 +123,10 @@ bool ModuleCamera::CleanUp()
 
 void ModuleCamera::setFOVButtons()
 {
-	if (App->input->GetKey(SDL_SCANCODE_F)) { // INCREASE FOV
+	if (App->input->GetKey(SDL_SCANCODE_G)) { // INCREASE FOV
 		if (verticalFOV >= 0 && verticalFOV < 179) {
 			verticalFOV += 1;
 		}
-		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_H)) { // DECREASE FOV
 		if (verticalFOV > 0 && verticalFOV < 180) {
@@ -284,6 +284,19 @@ void ModuleCamera::rotatePitchAndYawWithMouse()
 		rotationMatrix.SetCol(1, col5);
 		rotationMatrix.SetCol(2, col6);
 		doRotation(rotationMatrix);
+	}
+}
+
+void ModuleCamera::focusCamera()
+{
+	if (App->input->GetKey(SDL_SCANCODE_F)) { // INCREASE FOV
+		position = float3(0, 2, 6);
+		// Move position camera
+		frustum.SetPos(position);
+		// Move camera forward and backward - vector (0,0,1)
+		frustum.SetFront(-float3::unitZ);
+		// Rotation camera - vector (0,1,0)
+		frustum.SetUp(float3::unitY);
 	}
 }
 
