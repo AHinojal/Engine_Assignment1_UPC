@@ -22,8 +22,6 @@ public:
 	void WindowResized(unsigned width, unsigned height);
 	SDL_GLContext getContext() { return context; }
 
-	void renderCoordinateAxis();
-
 private:
 	// Change type for OpenGL Initialization
 	SDL_GLContext context;

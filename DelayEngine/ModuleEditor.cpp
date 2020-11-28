@@ -8,6 +8,8 @@
 #include "ImGUI/imgui.h"
 #include "ImGUI/imgui_impl_sdl.h"
 #include "ImGUI/imgui_impl_opengl3.h"
+#include "MathGeoLib/Math/float3.h"
+#include "MathGeoLib/Math/float3x4.h"
 
 ModuleEditor::ModuleEditor()
 {
@@ -113,7 +115,60 @@ void ModuleEditor::setScene()
 
 void ModuleEditor::setLeftMenu()
 {
-    ImGui::Begin("LEFT");
+    // Demonstrate the various window flags. Typically you would just use the default!
+    static bool no_titlebar = false;
+    static bool no_scrollbar = false;
+    static bool no_menu = false;
+    static bool no_move = false;
+    static bool no_resize = false;
+    static bool no_collapse = false;
+    static bool no_close = false;
+    static bool no_nav = false;
+    static bool no_background = false;
+    static bool no_bring_to_front = false;
+    static bool no_docking = false;
+
+    ImGui::Begin("INFO");
+        //ImGui::Text("dear imgui says hello. (%s)", IMGUI_VERSION);
+        if (ImGui::CollapsingHeader("Window"))
+        {
+            // Column header
+            ImGui::Columns(3, NULL, false);
+            ImGui::Text("    W    "); ImGui::NextColumn();
+            ImGui::Text("    H    "); ImGui::NextColumn();
+            ImGui::Text("         "); ImGui::NextColumn();
+            static int width = App->window->width;
+            static int height = App->window->height;
+            ImGui::DragInt("", &width, 0.0f); ImGui::NextColumn();
+            ImGui::DragInt("", &height, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Tamaño"); ImGui::NextColumn();
+        }
+        if (ImGui::CollapsingHeader("Camera"))
+        {
+            // Column header
+            ImGui::Columns(4, NULL, false);
+            ImGui::Text("    x    "); ImGui::NextColumn();
+            ImGui::Text("    y    "); ImGui::NextColumn();
+            ImGui::Text("    z    "); ImGui::NextColumn();
+            ImGui::Text("         "); ImGui::NextColumn();
+            float3 positionCamera = App->camera->getPosition();
+            ImGui::DragFloat("", &positionCamera.x, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &positionCamera.y, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &positionCamera.z, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Posicion"); ImGui::NextColumn();
+        }
+
+        if (ImGui::CollapsingHeader("Configuration"))
+        {
+
+        }
+
+        if (ImGui::CollapsingHeader("Window options"))
+        {
+            //ImGui::Checkbox("No titlebar", &no_titlebar); ImGui::SameLine(150);
+        }
+
+        // End of ShowDemoWindow()
         focusedLeft = ImGui::IsWindowFocused();
     ImGui::End();
 }

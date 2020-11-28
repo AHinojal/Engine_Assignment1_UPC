@@ -47,6 +47,7 @@ public:
 	void rotatePitchAndYawWithMouse();
 	void focusCamera();
 	void doRotation(float3x3& rotationMatrix);
+	float3 getPosition() { return position; };
 
 private:
 	Frustum frustum;

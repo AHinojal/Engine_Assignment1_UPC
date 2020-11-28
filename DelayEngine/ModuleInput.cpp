@@ -101,6 +101,7 @@ update_status ModuleInput::PreUpdate()
 				LOG("Detection risize window: W: %d, H: %d", event.window.data1, event.window.data2);
 				App->window->width = event.window.data1;
 				App->window->height = event.window.data2;
+				LOG("Change dimesions window: W: %d, H: %d", App->window->width, App->window->height);
 				App->window->sizeChanged = true;
 				break;
 			case SDL_WINDOWEVENT_SHOWN:
