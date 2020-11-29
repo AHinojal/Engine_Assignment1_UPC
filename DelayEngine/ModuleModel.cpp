@@ -19,6 +19,10 @@ ModuleModel::~ModuleModel()
 
 bool ModuleModel::Init()
 {
+    // LOG ASSIMP
+    /*struct aiLogStream stream;
+    stream.callback = myCallback;
+    aiAttachLogStream(&stream);*/
     return true;
 }
 
@@ -45,11 +49,19 @@ bool ModuleModel::CleanUp()
         glDeleteBuffers(1, &m.getVAO());
         glDeleteBuffers(1, &m.getEBO());
     }*/
+    meshes.clear();
+    textures.clear();
     return true;
 }
 
 void ModuleModel::Load(const char* file_name)
 {
+    // Delete old model if is only already loaded
+    if (!textures.empty() && !meshes.empty()) {
+        meshes.clear();
+        textures.clear();
+    }
+
     const aiScene* scene = aiImportFile(file_name, aiProcessPreset_TargetRealtime_MaxQuality);
     sizeMeshes = scene->mNumMeshes;
 

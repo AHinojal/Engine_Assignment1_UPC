@@ -243,7 +243,7 @@ void ModuleEditor::setLeftMenu()
             ImGui::Text("Faces"); ImGui::NextColumn();
             ImGui::Separator();
 
-            ImGui::Text("Texture:"); ImGui::NextColumn();
+            ImGui::Text("Texture:"); ImGui::NextColumn(); ImGui::NextColumn();
             // Column header
             ImGui::Columns(2, NULL, false);
             int widthTexture = App->texture->getWidth();
