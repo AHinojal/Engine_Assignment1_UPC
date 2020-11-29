@@ -21,6 +21,9 @@
   - ***A/D***: Move camera to left/right
 - ***WITH LEFT MOUSE***: Free look of the camera in this position.
 
+#### How to execute:
+Go to Executable folder and click in EngineMaster.exe.
+
 #### How to use:
 It allows the loading of FBX files by dragging them from any point on the hard disk.
 You can also control the camera with the mouse and see all the information about it.
