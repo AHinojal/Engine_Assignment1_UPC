@@ -2,7 +2,7 @@
 
 *AUTHOR*: **ALVARO HINOJAL BLANCO**
 
-*LINK*: https://github.com/AHinojal/Engine_Assignment1_UPC
+*LINK*: https://github.com/AHinojal/SuperDelay_Engine_UPC
 
 #### Description of the game:
 > This videogame's engine is made as an assignment for the master's degree "ADVANCED PROGRAMMING FOR AAA VIDEO GAMES" @ Universidad Politécnica de Cataluña.
