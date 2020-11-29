@@ -49,8 +49,7 @@ bool ModuleRender::Init()
 	//glFrontFace(GL_CCW); // Front faces will be counter clockwise
 
 	// Load Baker House when initialize the application
-	App->model->Load("..\\Game\\assets\\fbx\\BakerHouse.fbx");
-	//App->model->Load("..\\Game\\assets\\WoodGirl.fbx");
+	App->model->Load(BAKER_HOUSE_PATH);
 
 	return true;
 }

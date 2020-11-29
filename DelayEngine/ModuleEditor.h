@@ -17,7 +17,8 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	bool getFocused() { return focusedLeft || focusedBottom || focusedConsole; };
+	//bool getFocused() { return focusedLeft || focusedBottom || focusedConsole; };
+	bool getFocused() { return focusedLeft; };
 
 private:
 	bool enableWindows;

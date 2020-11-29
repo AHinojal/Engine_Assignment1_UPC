@@ -58,9 +58,9 @@ update_status ModuleEditor::Update()
 {
     showMainMenuBar();
     //setDockSpace();
-    setConsole();
+    //setConsole();
     setLeftMenu();
-    setBottomMenu();
+    //setBottomMenu();
 
     // Rendering
     ImGui::Render();
@@ -253,10 +253,6 @@ void ModuleEditor::setLeftMenu()
             ImGui::DragInt("", &heightTexture, 0.0f); ImGui::NextColumn();
             ImGui::Text("Height"); ImGui::NextColumn();
             ImGui::Columns(1);
-        }
-        if (ImGui::CollapsingHeader("Textures"))
-        {
-            //ImGui::Checkbox("No titlebar", &no_titlebar); ImGui::SameLine(150);
         }
 
         // End of ShowDemoWindow()

@@ -34,3 +34,4 @@ enum update_status
 #define DEGTORAD(angleDegrees) ((angleDegrees) * M_PI / 180.0)
 #define GLSL_VERSION "#version 130"
 #define GITHUB_URL "https://github.com/AHinojal/Engine_Assignment1_UPC"
+#define BAKER_HOUSE_PATH "..\\Game\\assets\\fbx\\BakerHouse.fbx"

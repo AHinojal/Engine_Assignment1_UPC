@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleWindow.h"
+#include "ModuleModel.h"
 #include "SDL/include/SDL.h"
 
 #define MAX_KEYS 300
@@ -85,7 +86,9 @@ update_status ModuleInput::PreUpdate()
 		case SDL_QUIT:
 			windowEvents[WE_QUIT] = true;
 			break;
-
+		case SDL_DROPFILE:
+			App->model->Load(event.drop.file);
+			LOG("FBX is loaded: %s", event.drop.file)
 		case SDL_WINDOWEVENT:
 			switch (event.window.event)
 			{
