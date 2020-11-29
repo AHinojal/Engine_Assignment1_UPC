@@ -14,7 +14,10 @@ public:
 	bool CleanUp();
 
 	unsigned LoadTexture(const char* fileData);
+	int getWidth() { return width; };
+	int getHeight() { return height; };
 
 private:
+	int width, height;
 };
 

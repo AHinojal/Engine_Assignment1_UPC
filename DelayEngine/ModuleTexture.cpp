@@ -72,6 +72,9 @@ unsigned ModuleTexture::LoadTexture(const char* fileData)
 		  interpolation for minifying filter */
 		// Flippin texture 
 
+		width = ilGetInteger(IL_IMAGE_WIDTH);
+		height = ilGetInteger(IL_IMAGE_HEIGHT);
+
 		glTexImage2D(GL_TEXTURE_2D,
 			0,
 			ilGetInteger(IL_IMAGE_BPP),

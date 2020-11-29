@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCamera.h"
 #include "ModuleWindow.h"
+#include "ModuleTexture.h"
 #include "ModuleModel.h"
 #include "ModuleRender.h"
 #include "SDL.h"
@@ -240,6 +241,15 @@ void ModuleEditor::setLeftMenu()
             ImGui::Text("Faces"); ImGui::NextColumn();
             ImGui::Separator();
 
+            ImGui::Text("Texture:"); ImGui::NextColumn();
+            // Column header
+            ImGui::Columns(2, NULL, false);
+            int widthTexture = App->texture->getWidth();
+            ImGui::DragInt("", &widthTexture, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Width"); ImGui::NextColumn();
+            int heightTexture = App->texture->getHeight();
+            ImGui::DragInt("", &heightTexture, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Height"); ImGui::NextColumn();
         }
         if (ImGui::CollapsingHeader("Textures"))
         {
