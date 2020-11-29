@@ -214,6 +214,7 @@
     <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\vec2d.h" />
     <ClInclude Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="ConsoleAssimp.h" />
     <ClInclude Include="Game\debug_draw\debugdraw.h" />
     <ClInclude Include="Game\debug_draw\debug_draw.hpp" />
     <ClInclude Include="Globals.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Math\TransformOps.cpp" />
     <ClCompile Include="..\..\Exercises_CppVideogames\04_EngineOGL\MathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ConsoleAssimp.cpp" />
     <ClCompile Include="ImGUI\imgui.cpp" />
     <ClCompile Include="ImGUI\imgui_demo.cpp" />
     <ClCompile Include="ImGUI\imgui_draw.cpp" />

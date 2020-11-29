@@ -27,7 +27,7 @@ enum update_status
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
 #define SCREEN_SIZE 2
-#define FULLSCREEN true
+#define FULLSCREEN false
 #define WINDOW_RESIZABLE true
 #define VSYNC true
 #define TITLE "Super Delay Engine"

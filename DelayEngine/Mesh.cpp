@@ -59,6 +59,7 @@ void Mesh::LoadEBO(const aiMesh* mesh)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	unsigned index_size = sizeof(unsigned) * mesh->mNumFaces * 3;
 
+	nFaces = mesh->mNumFaces;
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, index_size, nullptr, GL_STATIC_DRAW);
 	unsigned* indices = (unsigned*)(glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, index_size, GL_MAP_WRITE_BIT));
 	for (unsigned i = 0; i < mesh->mNumFaces; ++i)

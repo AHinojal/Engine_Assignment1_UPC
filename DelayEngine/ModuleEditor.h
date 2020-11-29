@@ -17,13 +17,14 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	bool getFocused() { return focusedLeft || focusedBottom; };
+	bool getFocused() { return focusedLeft || focusedBottom || focusedConsole; };
 
 private:
 	bool enableWindows;
-	bool focusedLeft, focusedBottom;
+	bool focusedLeft, focusedBottom, focusedConsole;
 	void showMainMenuBar();
 	void setScene();
+	void setConsole();
 	void setLeftMenu();
 	void setBottomMenu();
 	void setDockSpace();

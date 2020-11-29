@@ -23,9 +23,13 @@ public:
 	void LoadTextures(const aiScene* scene, aiMaterial** const mMaterials, unsigned int mNumMaterials);
 	void LoadMeshes(aiMesh** const mMeshes, unsigned int mNumMeshes, unsigned int program);
 	void Draw();
+	int getVertexMeshes();
+	int getIndexesMeshes();
+	int getFacesMeshes();
 
 private:
 	std::vector<Mesh> meshes;
+	unsigned int sizeMeshes;
 	std::vector<unsigned int> textures;
 };
 

@@ -17,6 +17,9 @@ public:
 	unsigned getVAO() { return vao; };
 	unsigned getEBO() { return ebo; };
 	void CleanUp();
+	unsigned int getVertexs() { return nVertexs; };
+	unsigned int getIndexs() { return nIndexes;};
+	unsigned int getFaces() { return nFaces; };
 
 	void DrawLenna();
 
@@ -28,6 +31,7 @@ private:
 	// Data VBO
 	unsigned int nVertexs = 0;
 	unsigned int nIndexes = 0;
+	unsigned int nFaces = 0;
 	unsigned int textureIndex = 0;
 
 };

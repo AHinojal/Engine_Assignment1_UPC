@@ -51,6 +51,7 @@ bool ModuleModel::CleanUp()
 void ModuleModel::Load(const char* file_name)
 {
     const aiScene* scene = aiImportFile(file_name, aiProcessPreset_TargetRealtime_MaxQuality);
+    sizeMeshes = scene->mNumMeshes;
 
     App->program->CreateProgram();
 
@@ -126,4 +127,31 @@ void ModuleModel::Draw()
     for (unsigned int i = 0; i < meshes.size(); i++) {
         meshes[i].Draw(textures);
     }
+}
+
+int ModuleModel::getVertexMeshes()
+{
+    int acuVertex = 0;
+    for (Mesh m : meshes) {
+        acuVertex += m.getVertexs();
+    }
+    return acuVertex;
+}
+
+int ModuleModel::getIndexesMeshes()
+{
+    int acuIndexes = 0;
+    for (Mesh m : meshes) {
+        acuIndexes += m.getIndexs();
+    }
+    return acuIndexes;
+}
+
+int ModuleModel::getFacesMeshes()
+{
+    int acuFaces = 0;
+    for (Mesh m : meshes) {
+        acuFaces += m.getFaces();
+    }
+    return acuFaces;
 }
