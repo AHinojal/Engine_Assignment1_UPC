@@ -43,7 +43,7 @@ bool ModuleTexture::CleanUp()
 	return true;
 }
 
-unsigned ModuleTexture::LoadTexture(char* fileData)
+unsigned ModuleTexture::LoadTexture(const char* fileData)
 {
 	ILuint texid;
 	GLuint image;
@@ -86,6 +86,7 @@ unsigned ModuleTexture::LoadTexture(char* fileData)
 	{
 		/* Error occured */
 		LOG("Texture not found.\n");
+		return false;
 		SDL_Quit();
 	}
 	ilDeleteImages(1, &texid); /* Because we have already copied image data into texture data

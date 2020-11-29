@@ -4,6 +4,7 @@
 #include "ModuleTexture.h"
 #include "ModuleProgram.h"
 #include "Mesh.h"
+#include <string>
 #include <assimp/cimport.h>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -72,15 +73,37 @@ void ModuleModel::LoadTextures(const aiScene* scene, aiMaterial** const mMateria
     {
         if (scene->mMaterials[i]->GetTexture(aiTextureType_DIFFUSE, 0, &file) == AI_SUCCESS)
         {
+            // I think that when you loaded the fisrt time, also search in the previous folder
+            LOG("Looking the texture on the path described in the FBX...: %s", file.data)
             unsigned isLoadImage = App->texture->LoadTexture(file.data);
             if (isLoadImage) {
                 LOG("Texture loaded.");
                 textures.push_back(isLoadImage);
             }
             else {
-                LOG("Texture not found.");
+                std::string sourcefileData = "..\\Game\\assets\\";
+                sourcefileData.append(file.data);
+                LOG("Texture not found. Trying in the same folder than the FBX...: %s", sourcefileData.c_str());
+                isLoadImage = App->texture->LoadTexture(sourcefileData.c_str());
+                if (isLoadImage) {
+                    LOG("Texture loaded.");
+                    textures.push_back(isLoadImage);
+                }
+                else {
+                    // Only access here if the texture is in a next folder
+                    std::string textureFileData = "..\\Game\\assets\\textures\\";
+                    textureFileData.append(file.data);
+                    LOG("Texture not found. Trying in own Texture/ folder...: %s", textureFileData.c_str());
+                    isLoadImage = App->texture->LoadTexture(textureFileData.c_str());
+                    if (isLoadImage) {
+                        LOG("Texture loaded.");
+                        textures.push_back(isLoadImage);
+                    }
+                    else {
+                        LOG("Texture not found.");
+                    }
+                }
             }
-            
         }
     }
 }
