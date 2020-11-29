@@ -183,6 +183,7 @@ void ModuleEditor::setLeftMenu()
             ImGui::DragInt("", &App->window->width, 0.0f); ImGui::NextColumn();
             ImGui::DragInt("", &App->window->height, 0.0f); ImGui::NextColumn();
             ImGui::Text("Size"); ImGui::NextColumn();
+            ImGui::Columns(1);
         }
         if (ImGui::CollapsingHeader("Camera"))
         {
@@ -224,6 +225,7 @@ void ModuleEditor::setLeftMenu()
             ImGui::DragFloat("", &zFarCamera, 0.0f); ImGui::NextColumn();
             ImGui::Text("Far");
             ImGui::NextColumn();
+            ImGui::Columns(1);
         }
         if (ImGui::CollapsingHeader("Renderer Model"))
         {
@@ -250,6 +252,7 @@ void ModuleEditor::setLeftMenu()
             int heightTexture = App->texture->getHeight();
             ImGui::DragInt("", &heightTexture, 0.0f); ImGui::NextColumn();
             ImGui::Text("Height"); ImGui::NextColumn();
+            ImGui::Columns(1);
         }
         if (ImGui::CollapsingHeader("Textures"))
         {
