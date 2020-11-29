@@ -20,6 +20,8 @@ ModuleCamera::ModuleCamera()
 	zNear = 0.2f;
 	zFar = 100.0f; //200.0f
 	position = float3(0, 2, 6);
+	front = -float3::unitZ;
+	up = float3::unitY;
 	standardSpeed = 0.25;
 	actualSpeed = standardSpeed;
 }
@@ -43,9 +45,9 @@ bool ModuleCamera::Init()
 	// Move position camera
 	frustum.SetPos(position);
 	// Move camera forward and backward - vector (0,0,1)
-	frustum.SetFront(-float3::unitZ);
+	frustum.SetFront(front);
 	// Rotation camera - vector (0,1,0)
-	frustum.SetUp(float3::unitY);
+	frustum.SetUp(up);
 
 	return true;
 }

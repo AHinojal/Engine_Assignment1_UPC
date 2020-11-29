@@ -4,7 +4,9 @@
 #include "ModuleCamera.h"
 #include "ModuleWindow.h"
 #include "ModuleRender.h"
-#include <GL\glew.h>
+#include "SDL.h"
+#include <GL/glew.h>
+#include <IL/il.h>
 #include "ImGUI/imgui.h"
 #include "ImGUI/imgui_impl_sdl.h"
 #include "ImGUI/imgui_impl_opengl3.h"
@@ -14,6 +16,7 @@
 ModuleEditor::ModuleEditor()
 {
     actualStatus = UPDATE_CONTINUE;
+    enableWindows = true;
 }
 
 ModuleEditor::~ModuleEditor()
@@ -90,12 +93,38 @@ void ModuleEditor::showMainMenuBar()
             }
             ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Editor Windows"))
+        {
+            if (ImGui::MenuItem("Put Desktop Window")) {
+                //The window size of the editor must be in relation to the desktop size (you can request the desktop screen size from SDL).
+                SDL_DisplayMode DM;
+                SDL_GetCurrentDisplayMode(0, &DM);
+                App->window->width = DM.w;
+                App->window->height = DM.h;
+                SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
+                SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL| SDL_WINDOW_FULLSCREEN_DESKTOP);
+            }
+            if (ImGui::MenuItem("Put Resizable Window")) {
+                App->window->width = SCREEN_WIDTH;
+                App->window->height = SCREEN_HEIGHT;
+                SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
+                SDL_SetWindowFullscreen(App->window->window, SDL_FALSE);
+            }
+            if (ImGui::MenuItem("Enable Info Windows")) {
+                enableWindows = true;
+            }
+            if (ImGui::MenuItem("Disable Info Windows")) {
+                enableWindows = false;
+            }
+            ImGui::EndMenu();
+        }
         if (ImGui::BeginMenu("Quit"))
         {
-
             actualStatus = UPDATE_STOP;
             ImGui::EndMenu();
         }
+
+
     ImGui::EndMainMenuBar();
 }
 
@@ -115,33 +144,34 @@ void ModuleEditor::setScene()
 
 void ModuleEditor::setLeftMenu()
 {
-    // Demonstrate the various window flags. Typically you would just use the default!
-    static bool no_titlebar = false;
-    static bool no_scrollbar = false;
-    static bool no_menu = false;
-    static bool no_move = false;
-    static bool no_resize = false;
-    static bool no_collapse = false;
-    static bool no_close = false;
-    static bool no_nav = false;
-    static bool no_background = false;
-    static bool no_bring_to_front = false;
-    static bool no_docking = false;
-
-    ImGui::Begin("INFO");
+    if (enableWindows) {
+        ImGui::Begin("Configuration", &enableWindows);
         //ImGui::Text("dear imgui says hello. (%s)", IMGUI_VERSION);
         if (ImGui::CollapsingHeader("Window"))
         {
+            ImGui::Text("%.1f FPS", ImGui::GetIO().Framerate);
+            if (ImGui::TreeNode("Hardware Detection"))
+            {
+                ImGui::BulletText("Graphics Card: %s", glGetString(GL_RENDERER));
+                ImGui::TreePop();
+            }
+            if (ImGui::TreeNode("Software Versions"))
+            {
+                ImGui::BulletText("OpenGL: %s", glGetString(GL_VERSION));
+                SDL_version compiled;
+                SDL_VERSION(&compiled);
+                ImGui::BulletText("SDL: %d.%d.%d\n", compiled.major, compiled.minor, compiled.patch);
+                ImGui::BulletText("DevIL: %d\n", IL_VERSION);
+                ImGui::TreePop();
+            }
             // Column header
             ImGui::Columns(3, NULL, false);
-            ImGui::Text("    W    "); ImGui::NextColumn();
-            ImGui::Text("    H    "); ImGui::NextColumn();
+            ImGui::Text("    Width    "); ImGui::NextColumn();
+            ImGui::Text("    Height   "); ImGui::NextColumn();
             ImGui::Text("         "); ImGui::NextColumn();
-            static int width = App->window->width;
-            static int height = App->window->height;
-            ImGui::DragInt("", &width, 0.0f); ImGui::NextColumn();
-            ImGui::DragInt("", &height, 0.0f); ImGui::NextColumn();
-            ImGui::Text("Tamaño"); ImGui::NextColumn();
+            ImGui::DragInt("", &App->window->width, 0.0f); ImGui::NextColumn();
+            ImGui::DragInt("", &App->window->height, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Size"); ImGui::NextColumn();
         }
         if (ImGui::CollapsingHeader("Camera"))
         {
@@ -155,7 +185,34 @@ void ModuleEditor::setLeftMenu()
             ImGui::DragFloat("", &positionCamera.x, 0.0f); ImGui::NextColumn();
             ImGui::DragFloat("", &positionCamera.y, 0.0f); ImGui::NextColumn();
             ImGui::DragFloat("", &positionCamera.z, 0.0f); ImGui::NextColumn();
-            ImGui::Text("Posicion"); ImGui::NextColumn();
+            ImGui::Text("Position"); ImGui::NextColumn();
+            float3 frontCamera = App->camera->getFront();
+            ImGui::DragFloat("", &frontCamera.x, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &frontCamera.y, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &frontCamera.z, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Front"); ImGui::NextColumn();
+            float3 upCamera = App->camera->getUp();
+            ImGui::DragFloat("", &upCamera.x, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &upCamera.y, 0.0f); ImGui::NextColumn();
+            ImGui::DragFloat("", &upCamera.z, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Up"); ImGui::NextColumn();
+            ImGui::Separator();
+            float fovCamera = App->camera->getFOV();
+            ImGui::DragFloat("", &fovCamera, 0.0f); ImGui::NextColumn();
+            ImGui::Text("FOV");
+            ImGui::NextColumn();
+            float aspectRadioCamera = App->camera->getAspectRadio();
+            ImGui::DragFloat("", &aspectRadioCamera, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Aspect Radio");
+            ImGui::NextColumn();
+            float zNearCamera = App->camera->getZNear();
+            ImGui::DragFloat("", &zNearCamera, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Near");
+            ImGui::NextColumn();
+            float zFarCamera = App->camera->getZFar();
+            ImGui::DragFloat("", &zFarCamera, 0.0f); ImGui::NextColumn();
+            ImGui::Text("Far");
+            ImGui::NextColumn();
         }
 
         if (ImGui::CollapsingHeader("Configuration"))
@@ -170,14 +227,18 @@ void ModuleEditor::setLeftMenu()
 
         // End of ShowDemoWindow()
         focusedLeft = ImGui::IsWindowFocused();
-    ImGui::End();
+        ImGui::End();
+    }
+    
 }
 
 void ModuleEditor::setBottomMenu()
 {
-    ImGui::Begin("BOTTOM");
-        focusedBottom = ImGui::IsWindowFocused();
-    ImGui::End();
+    if (enableWindows) {
+        ImGui::Begin("BOTTOM", &enableWindows);
+            focusedBottom = ImGui::IsWindowFocused();
+        ImGui::End();
+    }
 }
 
 void ModuleEditor:: setDockSpace()

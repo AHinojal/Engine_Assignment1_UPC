@@ -25,6 +25,8 @@ public:
 	float4x4 getModelMatrix() { return modelMatrix; };
 	float getFOV() { return verticalFOV; };
 	float getAspectRadio() { return aspectRadio; };
+	float getZNear() { return zNear; };
+	float getZFar() { return zFar; };
 	Frustum getFrustum() { return frustum; };
 	// Setters Window View
 	/*void setFOV(float range) {
@@ -48,6 +50,8 @@ public:
 	void focusCamera();
 	void doRotation(float3x3& rotationMatrix);
 	float3 getPosition() { return position; };
+	float3 getFront() { return frustum.Front(); };
+	float3 getUp() { return frustum.Up(); };
 
 private:
 	Frustum frustum;
@@ -58,7 +62,7 @@ private:
 	float aspectRadio;
 	float zNear;
 	float zFar;
-	float3 position;
+	float3 position, front, up;
 	float standardSpeed;
 	float actualSpeed;
 	float deltaTime;

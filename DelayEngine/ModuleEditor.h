@@ -20,6 +20,7 @@ public:
 	bool getFocused() { return focusedLeft || focusedBottom; };
 
 private:
+	bool enableWindows;
 	bool focusedLeft, focusedBottom;
 	void showMainMenuBar();
 	void setScene();
