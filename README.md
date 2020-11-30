@@ -29,12 +29,15 @@ It allows the loading of FBX files by dragging them from any point on the hard d
 You can also control the camera with the mouse and see all the information about it.
 You can resize the screen or set it to full screen from the bar menu and also enable or disable the window with all the information.
 
-#### LICENSES:
+#### LIBRARIES:
 - [Assimp](https://www.assimp.org/) 
 - [DevIL](http://openil.sourceforge.net/docs/) 
 - [GLEW](http://glew.sourceforge.net/) 
 - [imGUI](https://github.com/ocornut/imgui) 
 - [MathGeoLib](https://github.com/juj/MathGeoLib) 
 - [SDL](https://www.sdl.com/) 
+
+#### LICENSE:
+- [MIT License](https://github.com/AHinojal/SuperDelay_Engine_UPC/blob/main/LICENSE) 
 
 ### Enjoy playing the engine!
