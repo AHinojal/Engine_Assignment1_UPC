@@ -41,7 +41,7 @@ bool ModuleEditor::Init()
     ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer->getContext());
     ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
-  	return true;
+    return true;
 }
 
 update_status ModuleEditor::PreUpdate()
@@ -51,28 +51,29 @@ update_status ModuleEditor::PreUpdate()
     ImGui_ImplSDL2_NewFrame(App->window->window);
     ImGui::NewFrame();
 
-	return UPDATE_CONTINUE;
+    return UPDATE_CONTINUE;
 }
 
 update_status ModuleEditor::Update()
 {
     showMainMenuBar();
-    //setDockSpace();
-    //setConsole();
+    setDockSpace();
+    setScene();
+    setConsole();
     setLeftMenu();
-    //setBottomMenu();
+    setBottomMenu();
 
     // Rendering
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-	return actualStatus;
+    return actualStatus;
 }
 
 update_status ModuleEditor::PostUpdate()
 {
 
-	return UPDATE_CONTINUE;
+    return UPDATE_CONTINUE;
 }
 
 bool ModuleEditor::CleanUp()
@@ -80,51 +81,51 @@ bool ModuleEditor::CleanUp()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
-	return true;
+    return true;
 }
 
 void ModuleEditor::showMainMenuBar()
 {
-    ImGui::BeginMainMenuBar();  
-        if (ImGui::BeginMenu("About"))
-        {
-            ImGui::MenuItem("Engine name:", TITLE);
-            ImGui::MenuItem("Author:", "ALVARO HINOJAL BLANCO");
-            if (ImGui::MenuItem("GitHub:", GITHUB_URL)) {
-                visitGitHub();
-            }
-            ImGui::EndMenu();
+    ImGui::BeginMainMenuBar();
+    if (ImGui::BeginMenu("About"))
+    {
+        ImGui::MenuItem("Engine name:", TITLE);
+        ImGui::MenuItem("Author:", "ALVARO HINOJAL BLANCO");
+        if (ImGui::MenuItem("GitHub:", GITHUB_URL)) {
+            visitGitHub();
         }
-        if (ImGui::BeginMenu("Editor Windows"))
-        {
-            if (ImGui::MenuItem("Put Desktop Window")) {
-                //The window size of the editor must be in relation to the desktop size (you can request the desktop screen size from SDL).
-                SDL_DisplayMode DM;
-                SDL_GetCurrentDisplayMode(0, &DM);
-                App->window->width = DM.w;
-                App->window->height = DM.h;
-                SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
-                SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL| SDL_WINDOW_FULLSCREEN_DESKTOP);
-            }
-            if (ImGui::MenuItem("Put Resizable Window")) {
-                App->window->width = SCREEN_WIDTH;
-                App->window->height = SCREEN_HEIGHT;
-                SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
-                SDL_SetWindowFullscreen(App->window->window, SDL_FALSE);
-            }
-            if (ImGui::MenuItem("Enable Info Windows")) {
-                enableWindows = true;
-            }
-            if (ImGui::MenuItem("Disable Info Windows")) {
-                enableWindows = false;
-            }
-            ImGui::EndMenu();
+        ImGui::EndMenu();
+    }
+    if (ImGui::BeginMenu("Editor Windows"))
+    {
+        if (ImGui::MenuItem("Put Desktop Window")) {
+            //The window size of the editor must be in relation to the desktop size (you can request the desktop screen size from SDL).
+            SDL_DisplayMode DM;
+            SDL_GetCurrentDisplayMode(0, &DM);
+            App->window->width = DM.w;
+            App->window->height = DM.h;
+            SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
+            SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP);
         }
-        if (ImGui::BeginMenu("Quit"))
-        {
-            actualStatus = UPDATE_STOP;
-            ImGui::EndMenu();
+        if (ImGui::MenuItem("Put Resizable Window")) {
+            App->window->width = SCREEN_WIDTH;
+            App->window->height = SCREEN_HEIGHT;
+            SDL_SetWindowSize(App->window->window, App->window->width, App->window->height);
+            SDL_SetWindowFullscreen(App->window->window, SDL_FALSE);
         }
+        if (ImGui::MenuItem("Enable Info Windows")) {
+            enableWindows = true;
+        }
+        if (ImGui::MenuItem("Disable Info Windows")) {
+            enableWindows = false;
+        }
+        ImGui::EndMenu();
+    }
+    if (ImGui::BeginMenu("Quit"))
+    {
+        actualStatus = UPDATE_STOP;
+        ImGui::EndMenu();
+    }
 
 
     ImGui::EndMainMenuBar();
@@ -132,14 +133,14 @@ void ModuleEditor::showMainMenuBar()
 
 void ModuleEditor::setScene()
 {
-    ImGui::Begin("Scene Window");
+    ImGui::Begin("Scene");
 
     ImVec2 pos = ImGui::GetCursorScreenPos();
 
     //Give us the texture but not the rendering (App->camera,window,renderer->Update())
-    /*ImGui::GetWindowDrawList()->AddImage(
-        (void*)App->window->Update(), ImVec2(ImGui::GetCursorScreenPos()),
-        ImVec2(ImGui::GetCursorScreenPos().x + App->window->width / 2, ImGui::GetCursorScreenPos().y + App->window->height / 2), ImVec2(0, 1), ImVec2(1, 0));*/
+    ImGui::GetWindowDrawList()->AddImage(
+        (void*)App->renderer->getTexture(), ImVec2(ImGui::GetCursorScreenPos()),
+        ImVec2(ImGui::GetCursorScreenPos().x + App->window->width, ImGui::GetCursorScreenPos().y + App->window->height), ImVec2(0, 1), ImVec2(1, 0));
 
     ImGui::End();
 }
@@ -148,7 +149,7 @@ void ModuleEditor::setConsole()
 {
     if (enableWindows) {
         ImGui::Begin("Console");
-            focusedConsole = ImGui::IsWindowFocused();
+        focusedConsole = ImGui::IsWindowFocused();
         ImGui::End();
     }
 }
@@ -259,7 +260,7 @@ void ModuleEditor::setLeftMenu()
         focusedLeft = ImGui::IsWindowFocused();
         ImGui::End();
     }
-    
+
 }
 
 void ModuleEditor::setBottomMenu()
@@ -267,12 +268,12 @@ void ModuleEditor::setBottomMenu()
     bool closeWindow = false;
     if (enableWindows) {
         ImGui::Begin("Search Materials");
-            focusedBottom = ImGui::IsWindowFocused();
+        focusedBottom = ImGui::IsWindowFocused();
         ImGui::End();
     }
 }
 
-void ModuleEditor:: setDockSpace()
+void ModuleEditor::setDockSpace()
 {
     ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
 }

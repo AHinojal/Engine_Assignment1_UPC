@@ -56,6 +56,31 @@ bool ModuleRender::Init()
 
 update_status ModuleRender::PreUpdate()
 {
+	return UPDATE_CONTINUE;
+}
+
+// Called every draw update
+update_status ModuleRender::Update()
+{
+	// Framebuffer to do a scene window
+	glGenFramebuffers(1, &fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	// create a color attachment texture
+	glGenTextures(1, &textureRender);
+	glBindTexture(GL_TEXTURE_2D, textureRender);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, App->window->width, App->window->height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureRender, 0);
+	// create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
+	glGenRenderbuffers(1, &rbo);
+	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, App->window->width, App->window->height); // use a single renderbuffer object for both a depth AND stencil buffer.
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo); // now actually attach it
+	// now that we actually created the framebuffer and added all attachments we want to check if it is actually complete now
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		LOG("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
+
 	// Setup Viewport
 	glViewport(0, 0, App->window->width, App->window->height);
 	// glViewport(App->window->width - App->window->width / 1.25, App->window->height - App->window->height / 1.25, App->window->width / 1.25, App->window->height / 1.25);
@@ -65,12 +90,6 @@ update_status ModuleRender::PreUpdate()
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	return UPDATE_CONTINUE;
-}
-
-// Called every draw update
-update_status ModuleRender::Update()
-{
 	// Draw our grid
 	App->debugDraw->Draw(App->camera->getViewMatrix(), App->camera->getProjectionMatrix(), App->window->width, App->window->height);
 
@@ -81,12 +100,14 @@ update_status ModuleRender::Update()
 	// Draw out model
 	App->model->Draw();
 
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleRender::PostUpdate()
 {
- 	// OpenGL Swap Frame Buffer
+	// OpenGL Swap Frame Buffer
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }

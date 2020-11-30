@@ -22,12 +22,16 @@ public:
 	void WindowResized(unsigned width, unsigned height);
 	SDL_GLContext getContext() { return context; };
 	float4x4 getModelMatrix() { return model; };
-	float4x4 getViewMatrix() { return view;};
+	float4x4 getViewMatrix() { return view; };
 	float4x4 getProjectionMatrix() { return projection; };
+	int getTexture() { return textureRender; };
 
 private:
 	// Change type for OpenGL Initialization
 	SDL_GLContext context;
 	// transforms in camera
 	float4x4 model, view, projection;
+	// Framebuffer to do a scene window
+	unsigned int fbo, rbo;
+	unsigned int textureRender;
 };
